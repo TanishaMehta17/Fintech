@@ -1,10 +1,12 @@
 from flask import Flask,jsonify,request
 import datetime
 import jwt
-app=Flask(_name_)
+
+app=Flask(__name__)
 ##Home_loan
 @app.route('/home_loan',methods=['POST'])
 def home_loan():
+
    # token=request.headers.get('token')
 
    # if not token:
@@ -27,8 +29,10 @@ def home_loan():
 
 
 ##Gold loan 
+
 @app.route('/gold_loan',methods=['POST'])
 def gold_loan():
+
    # token=request.headers.get('token')
 
    # if not token:

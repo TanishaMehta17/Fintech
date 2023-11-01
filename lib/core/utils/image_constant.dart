@@ -11,7 +11,11 @@ class ImageConstant {
   // Analytics images
   static String imgGroup550 = '$imagePath/img_group550.png';
 
-  static String imgBookmark = '$imagePath/img_bookmark.svg';
+  static String imgBookmark = '$imagePath/img_bookmark.svg'; static String imgArrowRight = '$imagePath/img_arrow_right.svg';
+
+  static String imgArrowRightGray500 =
+      '$imagePath/img_arrow_right_gray_500.svg';
+
 
   static String imgVectorPrimary = '$imagePath/img_vector_primary.png';
 

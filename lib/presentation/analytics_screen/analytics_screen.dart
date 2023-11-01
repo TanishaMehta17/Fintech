@@ -384,7 +384,20 @@ class AnalyticsScreen extends StatelessWidget {
                                     margin: EdgeInsets.only(top: 2.v),
                                   ),
                                   onTap: () {
-                                    onTapdropbox(context);
+                                    //onTapdropbox(context);
+
+
+                                    showModalBottomSheet(context: context, builder: (BuildContext context){
+                                      return SizedBox(
+                                         width: double.maxFinite,
+          child: Column(
+            children: [
+              
+              _buildAnalyticsDropboxOne(context),
+            ],
+          ),
+                                      );
+                                    });
                                   },
                                 ),
                                 Padding(
@@ -456,7 +469,27 @@ class AnalyticsScreen extends StatelessWidget {
                                     margin: EdgeInsets.only(top: 2.v),
                                   ),
                                   onTap: () {
-                                    onTapapplepay(context);
+                                    //onTapapplepay(context);
+
+                                    showModalBottomSheet(context: context, builder: (BuildContext context){
+                                      return SizedBox(
+                                         width: double.maxFinite,
+          child: Column(
+            children: [
+              
+              //_buildAnalyticsLinkedin(context),
+               _buildScrollView(context),
+            ],
+          ),
+
+
+
+
+                                      );
+
+                                    });
+
+                                    
                                   },
                                 ),
                                 Padding(
@@ -528,7 +561,20 @@ class AnalyticsScreen extends StatelessWidget {
                                     margin: EdgeInsets.only(top: 2.v),
                                   ),
                                   onTap: () {
-                                    onTaplinkedln(context);
+                                  //  onTaplinkedln(context);
+                                    showModalBottomSheet(context: context, builder: (BuildContext context){
+                                      return SizedBox(
+                                                                    width: double.maxFinite,
+          child: Column(
+            children: [
+              
+              _buildAnalyticsLinkedin(context),
+            ],
+          ),
+
+                                      );
+                                    });
+
                                   },
                                 ),
                                 Padding(
@@ -608,3 +654,358 @@ class AnalyticsScreen extends StatelessWidget {
     Navigator.pushNamed(context, AppRoutes.analyticsAppleScreen);
   }
 }
+
+
+ Widget _buildAnalyticsLinkedin(BuildContext context) {
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top:8.0),
+          child: Column(
+            children: [
+              CustomImageView(
+                imagePath: ImageConstant.imgLinkedin1,
+                height: 75.adaptSize,
+                width: 75.adaptSize,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30.h,
+                  vertical: 45.v,
+                ),
+                decoration: AppDecoration.fillWhiteA.copyWith(
+                  borderRadius: BorderRadiusStyle.customBorderTL20,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "LinkedIn",
+                      style: CustomTextStyles.headlineMediumErrorContainer,
+                    ),
+                    SizedBox(height: 7.v),
+                    Text(
+                      "POS Signature Purchase",
+                      style: CustomTextStyles.titleMediumPink20016,
+                    ),
+                    SizedBox(height: 14.v),
+                  //   CustomTextFormField(
+                  //     width: 249.h,
+                  //  //   controller: group6582Controller,
+                  //     hintText: "Transactions Status: Posted",
+                  //     textInputAction: TextInputAction.done,
+                  //   ),
+                  Container(
+                                            width: 249.h,
+                                            height: 35.v,
+                                            decoration: BoxDecoration(
+                                                color: Color(0XFF1CCD9D)
+                                                    .withOpacity(0.15),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 8),
+                                              child: Text(
+                                                'Transactions Status: Sent',
+                                                style: TextStyle(
+                                                    color: Color(0XFF1CCD9D)),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                    SizedBox(height: 16.v),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "5",
+                            style: CustomTextStyles.displaySmall34,
+                          ),
+                          TextSpan(
+                            text: ".00",
+                            style: theme.textTheme.displaySmall,
+                          ),
+                          TextSpan(
+                            text: "INR",
+                            style: theme.textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 16.v),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Transaction ID",
+                          style: CustomTextStyles.titleMediumPink200,
+                        ),
+                        Text(
+                          "14225055650",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 18.v),
+                    Divider(),
+                    SizedBox(height: 16.v),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 1.v),
+                          child: Text(
+                            "Posted Date",
+                            style: CustomTextStyles.titleMediumPink200,
+                          ),
+                        ),
+                        Text(
+                          "Jul 04, 2021",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 36.v),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+Widget _buildScrollView(BuildContext context) {
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top:8.0),
+          child: Column(
+            children: [
+              CustomImageView(
+                imagePath: ImageConstant.imgApple1,
+                height: 75.adaptSize,
+                width: 75.adaptSize,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30.h,
+                  vertical: 38.v,
+                ),
+                decoration: AppDecoration.fillWhiteA.copyWith(
+                  borderRadius: BorderRadiusStyle.customBorderTL20,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Apple Pay",
+                      style: CustomTextStyles.headlineMediumErrorContainer,
+                    ),
+                    SizedBox(height: 5.v),
+                    Text(
+                      "POS Signature Purchase",
+                      style: CustomTextStyles.titleMediumPink20016,
+                    ),
+                    SizedBox(height: 14.v),
+                    Container(
+                                            width: 249.h,
+                                            height: 35.v,
+                                            decoration: BoxDecoration(
+                                                color: Color(0XFF1CCD9D)
+                                                    .withOpacity(0.15),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 8),
+                                              child: Text(
+                                                'Transactions Status: Sent',
+                                                style: TextStyle(
+                                                    color: Color(0XFF1CCD9D)),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                    SizedBox(height: 16.v),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "8.50",
+                            style: theme.textTheme.displaySmall,
+                          ),
+                          TextSpan(
+                            text: "INR",
+                            style: theme.textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 16.v),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Transaction ID",
+                          style: CustomTextStyles.titleMediumPink200,
+                        ),
+                        Text(
+                          "14225055650",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 18.v),
+                    Divider(),
+                    SizedBox(height: 16.v),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 1.v),
+                          child: Text(
+                            "Posted Date",
+                            style: CustomTextStyles.titleMediumPink200,
+                          ),
+                        ),
+                        Text(
+                          "Jul 04, 2021",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 50.v),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+ Widget _buildAnalyticsDropboxOne(BuildContext context) {
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top:8.0),
+          child: Column(
+            children: [
+              CustomImageView(
+                imagePath: ImageConstant.imgDropbox1,
+                height: 75.adaptSize,
+                width: 75.adaptSize,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30.h,
+                  vertical: 37.v,
+                ),
+                decoration: AppDecoration.fillWhiteA.copyWith(
+                  borderRadius: BorderRadiusStyle.customBorderTL20,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 125.h),
+                        child: Text(
+                          "Dropbox",
+                          style: CustomTextStyles.headlineMediumErrorContainer,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 6.v),
+                    Text(
+                      "POS Signature Purchase",
+                      style: CustomTextStyles.titleMediumPink20016,
+                    ),
+                    SizedBox(height: 14.v),
+                  Container(
+                                            width: 249.h,
+                                            height: 35.v,
+                                            decoration: BoxDecoration(
+                                                color: Color(0XFF1CCD9D)
+                                                    .withOpacity(0.15),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 8),
+                                              child: Text(
+                                                'Transactions Status: Sent',
+                                                style: TextStyle(
+                                                    color: Color(0XFF1CCD9D)),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                    SizedBox(height: 16.v),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "10",
+                            style: CustomTextStyles.displaySmall34,
+                          ),
+                          TextSpan(
+                            text: ".00",
+                            style: theme.textTheme.displaySmall,
+                          ),
+                          TextSpan(
+                            text: "INR",
+                            style: theme.textTheme.titleLarge,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 16.v),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Transaction ID",
+                          style: CustomTextStyles.titleMediumPink200,
+                        ),
+                        Text(
+                          "14225055650",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 18.v),
+                    Divider(),
+                    SizedBox(height: 16.v),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 1.v),
+                          child: Text(
+                            "Posted Date",
+                            style: CustomTextStyles.titleMediumPink200,
+                          ),
+                        ),
+                        Text(
+                          "Jul 04, 2021",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 52.v),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
