@@ -3,6 +3,7 @@ import datetime
 import jwt
 
 app=Flask(__name__)
+
 ##Home_loan
 @app.route('/home_loan',methods=['POST'])
 def home_loan():
@@ -267,48 +268,48 @@ def bank_to_bank():
         return jsonify({'message': 'Invalid token'}), 401
 
 ##icici
-@app.route('/bank_to_bank_icici',methods=['POST'])
-def bank_to_bank():
-   # token=request.headers.get('token')
+# @app.route('/bank_to_bank_icici',methods=['POST'])
+# def bank_to_bank():
+#    # token=request.headers.get('token')
 
-   # if not token:
-        #return jsonify({'message':'token is missing'}), 401
+#    # if not token:
+#         #return jsonify({'message':'token is missing'}), 401
 
-    try:
-        #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
-        if Password=='0000':
-            print("Password varified")
-        data=request.get_json()
-        print(data)
-        print(datetime.datetime.now())
-        return jsonify({'message': 'Your payment is succeccfull '}), 200
-    except jwt.ExpiredSignatureError:
-        return jsonify({'message': 'token is expired'}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({'message': 'Invalid token'}), 401
+#     try:
+#         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
+#         Password=request.headers.get('Password')
+#         if Password=='0000':
+#             print("Password varified")
+#         data=request.get_json()
+#         print(data)
+#         print(datetime.datetime.now())
+#         return jsonify({'message': 'Your payment is succeccfull '}), 200
+#     except jwt.ExpiredSignatureError:
+#         return jsonify({'message': 'token is expired'}), 401
+#     except jwt.InvalidTokenError:
+#         return jsonify({'message': 'Invalid token'}), 401
 
 
-@app.route('/bank_to_bank_india ',methods=['POST'])
-def bank_to_bank():
-   # token=request.headers.get('token')
+# @app.route('/bank_to_bank_india ',methods=['POST'])
+# def bank_to_bank():
+#    # token=request.headers.get('token')
 
-   # if not token:
-        #return jsonify({'message':'token is missing'}), 401
+#    # if not token:
+#         #return jsonify({'message':'token is missing'}), 401
 
-    try:
-        #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
-        if Password=='0000':
-            print("Password varified")
-        data=request.get_json()
-        print(data)
-        print(datetime.datetime.now())
-        return jsonify({'message': 'Your payment is succeccfull '}), 200
-    except jwt.ExpiredSignatureError:
-        return jsonify({'message': 'token is expired'}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({'message': 'Invalid token'}), 401
+#     try:
+#         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
+#         Password=request.headers.get('Password')
+#         if Password=='0000':
+#             print("Password varified")
+#         data=request.get_json()
+#         print(data)
+#         print(datetime.datetime.now())
+#         return jsonify({'message': 'Your payment is succeccfull '}), 200
+#     except jwt.ExpiredSignatureError:
+#         return jsonify({'message': 'token is expired'}), 401
+#     except jwt.InvalidTokenError:
+#         return jsonify({'message': 'Invalid token'}), 401
 
 
 ##recharge 
@@ -334,48 +335,48 @@ def recharge():
         return jsonify({'message': 'Invalid token'}), 401
 
 
-@app.route('/recharge_jio',methods=['POST'])
-def recharge():
-   # token=request.headers.get('token')
+# @app.route('/recharge_jio',methods=['POST'])
+# def recharge():
+#    # token=request.headers.get('token')
 
-   # if not token:
-        #return jsonify({'message':'token is missing'}), 401
+#    # if not token:
+#         #return jsonify({'message':'token is missing'}), 401
 
-    try:
-        #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
-        if Password=='0000':
-            print("Password varified")
-        data=request.get_json()
-        print(data)
-        print(datetime.datetime.now())
-        return jsonify({'message': 'Your Recharge was successfull'}), 200
-    except jwt.ExpiredSignatureError:
-        return jsonify({'message': 'token is expired'}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({'message': 'Invalid token'}), 401
+#     try:
+#         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
+#         Password=request.headers.get('Password')
+#         if Password=='0000':
+#             print("Password varified")
+#         data=request.get_json()
+#         print(data)
+#         print(datetime.datetime.now())
+#         return jsonify({'message': 'Your Recharge was successfull'}), 200
+#     except jwt.ExpiredSignatureError:
+#         return jsonify({'message': 'token is expired'}), 401
+#     except jwt.InvalidTokenError:
+#         return jsonify({'message': 'Invalid token'}), 401
 
 
-@app.route('/recharge_airtel',methods=['POST'])
-def recharge():
-   # token=request.headers.get('token')
+# @app.route('/recharge_airtel',methods=['POST'])
+# def recharge():
+#    # token=request.headers.get('token')
 
-   # if not token:
-        #return jsonify({'message':'token is missing'}), 401
+#    # if not token:
+#         #return jsonify({'message':'token is missing'}), 401
 
-    try:
-        #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
-        if Password=='0000':
-            print("Password varified")
-        data=request.get_json()
-        print(data)
-        print(datetime.datetime.now())
-        return jsonify({'message': 'Your Recharge was successfull is paid '}), 200
-    except jwt.ExpiredSignatureError:
-        return jsonify({'message': 'token is expired'}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({'message': 'Invalid token'}), 401
+#     try:
+#         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
+#         Password=request.headers.get('Password')
+#         if Password=='0000':
+#             print("Password varified")
+#         data=request.get_json()
+#         print(data)
+#         print(datetime.datetime.now())
+#         return jsonify({'message': 'Your Recharge was successfull is paid '}), 200
+#     except jwt.ExpiredSignatureError:
+#         return jsonify({'message': 'token is expired'}), 401
+#     except jwt.InvalidTokenError:
+#         return jsonify({'message': 'Invalid token'}), 401
 
 
 
