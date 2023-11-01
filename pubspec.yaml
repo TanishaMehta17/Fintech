@@ -1,0 +1,32 @@
+name: tanisha_s_application14
+description: A new Flutter project.
+version: 1.0.0+1
+environment: 
+  sdk: '>=2.12.0 <3.0.0'
+dependencies: 
+  flutter: 
+    sdk: flutter
+  cached_network_image: ^3.2.1
+  flutter_svg: ^1.1.6
+  pin_code_fields: ^7.3.0
+  flutter_svg_provider: ^1.0.3
+  smooth_page_indicator: ^1.0.0+2
+  grouped_list: ^5.1.2
+  intl: ^0.18.0
+dev_dependencies: 
+  flutter_test: 
+    sdk: flutter
+flutter: 
+  uses-material-design: true
+  assets: 
+    - assets/
+    - assets/images/
+  fonts: 
+    - family: Audiowide
+      fonts: 
+        - asset: assets/fonts/AudiowideRegular.ttf
+          weight: 400
+    - family: Arapey
+      fonts: 
+        - asset: assets/fonts/ArapeyRegular.ttf
+          weight: 400
