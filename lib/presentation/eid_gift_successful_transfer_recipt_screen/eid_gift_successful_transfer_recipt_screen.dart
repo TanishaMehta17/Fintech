@@ -47,7 +47,7 @@ class EidGiftSuccessfulTransferReciptScreen extends StatelessWidget {
                       CustomElevatedButton(
                         height: 38.v,
                         width: 249.h,
-                        text: "Transactions Status: Paid ",
+                        text: "Transaction Status: Paid ",
                         buttonStyle: CustomButtonStyles.outlineBlueGray,
                         buttonTextStyle: CustomTextStyles.titleMediumTealA70001,
                       ),
