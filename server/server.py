@@ -1,8 +1,12 @@
 from flask import Flask,jsonify,request
 import datetime
 import jwt
+from flask_cors import CORS
+import csv
+fields=["customer_id","timestamp","event","scheme"]
 
 app=Flask(__name__)
+CORS(app)
 
 ##Home_loan
 @app.route('/home_loan',methods=['POST'])
@@ -16,6 +20,7 @@ def home_loan():
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
         Password=request.headers.get('Password')
+        token=request.header.get('token')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -100,25 +105,32 @@ def car_loan():
         return jsonify({'message': 'token is expired'}), 401
     except jwt.InvalidTokenError:
         return jsonify({'message': 'Invalid token'}), 401
-    
 
 ## netfelx
 @app.route('/netflix',methods=['POST'])
 def netflix():
-   # token=request.headers.get('token')
+    token=request.headers.get('token')
 
-   # if not token:
-        #return jsonify({'message':'token is missing'}), 401
+    if not token:
+        return jsonify({'message':'token is missing'}), 401
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
-        if Password=='0000':
+        Password=request.headers.get('pin')
+        
+        if Password=='1134':
             print("Password varified")
-        data=request.get_json()
-        print(data)
-        print(datetime.datetime.now())
-        return jsonify({'message': 'Your payment has been transferred successfully'}), 200
+            data=request.get_json()
+            print(data)
+            print(datetime.datetime.now())
+            data["customer_id"]="sdvasfdbadfbe"
+            data["timestamp"]=datetime.datetime.now()
+            with open("data.csv","a") as file:
+                writer=csv.DictWriter(file,fieldnames=fields)
+                writer.writerow(data)
+            return jsonify({'message': 'Your payment has been transferred successfully'}), 200
+        else:
+            return jsonify({'message': 'Invalid Pin try again!'}), 400
     except jwt.ExpiredSignatureError:
         return jsonify({'message': 'token is expired'}), 401
     except jwt.InvalidTokenError:
@@ -810,3 +822,6 @@ def person_to_person():
         return jsonify({'message': 'token is expired'}), 401
     except jwt.InvalidTokenError:
         return jsonify({'message': 'Invalid token'}), 401
+
+
+app.run(port=5000)

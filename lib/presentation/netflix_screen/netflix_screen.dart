@@ -9,6 +9,8 @@ import 'package:tanisha_s_application14/widgets/custom_bottom_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart';
 import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 // ignore_for_file: must_be_immutable
 class NetflixScreen extends StatelessWidget {
@@ -294,8 +296,49 @@ class NetflixScreen extends StatelessWidget {
     Navigator.pop(context);
   }
 
-  onTapConfirm(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.netflixConfirmationSuccessfulTransferScreen);
+  Future<void> onTapConfirm(BuildContext context) async {
+    String dig1 = number_controller.text;
+    String dig2 = number_controller1.text;
+    String dig3 = number_controller2.text;
+    String dig4 = number_controller3.text;
+    String pin = dig1 + dig2 + dig3 + dig4;
+
+    var response = await http.post(
+      Uri.parse("http://localhost:5000/netflix"),
+      headers: {
+        "Content-Type": "application/json",
+        "token": "token",
+        "pin": pin
+      },
+      body: jsonEncode({"event": "bill_payment", "scheme": "netflix"}),
+    );
+
+    if (response.statusCode == 200) {
+      Navigator.pushNamed(
+          context, AppRoutes.netflixConfirmationSuccessfulTransferScreen);
+    } else if (response.statusCode == 400) {
+      ///Invalid PIN
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Invalid credentials. Please try again.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } else if (response.statusCode == 401) {
+      ///Login screen redirect session expire
+    } else {
+      ///Some error occured
+    }
   }
 }
