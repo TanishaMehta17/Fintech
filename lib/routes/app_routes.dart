@@ -826,11 +826,12 @@ class AppRoutes {
     birthdayGiftGiftCardTransferConfirmationScreen: (context) =>
         BirthdayGiftGiftCardTransferConfirmationScreen(),
     moneyTransferScreen: (context) => MoneyTransferScreen(),
-    personToPersonTransferScreen: (context) => PersonToPersonTransferScreen(),
+    personToPersonTransferScreen: (context) =>
+        PersonToPersonTransferScreen(String, String, int),
     personToPersontransferAmountScreen: (context) =>
-        PersonToPersontransferAmountScreen(),
+        PersonToPersontransferAmountScreen(String, String),
     personToPersonConfirmationScreen: (context) =>
-        PersonToPersonConfirmationScreen(),
+        PersonToPersonConfirmationScreen(String, String, int),
     moerOptionsScreen: (context) => MoerOptionsScreen(),
     homeInsuranceInfoScreen: (context) => HomeInsuranceInfoScreen(),
     homeInsuranceTransferConfirmationScreen: (context) =>
@@ -853,7 +854,7 @@ class AppRoutes {
         EidGiftConfirmationSuccessfulTransferScreen(),
     eidTransferConfirmationScreen: (context) => EidTransferConfirmationScreen(),
     personToPersonConfirmationSuccessfulTransferScreen: (context) =>
-        PersonToPersonConfirmationSuccessfulTransferScreen(),
+        PersonToPersonConfirmationSuccessfulTransferScreen(String, String, int),
     personToPersonConfirmationSuccessfulTransferReciptScreen: (context) =>
         PersonToPersonConfirmationSuccessfulTransferReciptScreen(),
     giftCardsScreen: (context) => GiftCardsScreen(),

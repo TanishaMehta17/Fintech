@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/person_to_person_confirmation_successful_transfer_screen/person_to_person_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,9 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class PersonToPersonTransferScreen extends StatelessWidget {
-  PersonToPersonTransferScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  PersonToPersonTransferScreen(this.name, this.accNo, this.amt, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -85,13 +88,13 @@ class PersonToPersonTransferScreen extends StatelessWidget {
                                           child: Padding(
                                               padding: EdgeInsets.only(
                                                   left: 94.h, top: 22.v),
-                                              child: Text("Jonathan",
+                                              child: Text("$name",
                                                   style: theme.textTheme
                                                       .headlineMedium))),
                                       SizedBox(height: 6.v),
                                       Align(
                                           alignment: Alignment.centerLeft,
-                                          child: Text("1******6103",
+                                          child: Text("$accNo",
                                               style: CustomTextStyles
                                                   .titleMedium16_1)),
                                       CustomTextFormField(
@@ -115,7 +118,7 @@ class PersonToPersonTransferScreen extends StatelessWidget {
                                       RichText(
                                           text: TextSpan(children: [
                                             TextSpan(
-                                                text: "250.00",
+                                                text: "$amt",
                                                 style: CustomTextStyles
                                                     .displaySmallRegular_1),
                                             TextSpan(
@@ -187,8 +190,17 @@ class PersonToPersonTransferScreen extends StatelessWidget {
     Navigator.pop(context);
   }
 
+  // onTapcon(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.personToPersonConfirmationSuccessfulTransferScreen);
+  // }
   onTapcon(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.personToPersonConfirmationSuccessfulTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              PersonToPersonConfirmationSuccessfulTransferScreen(
+                  name, accNo, amt)),
+    );
   }
 }

@@ -64,10 +64,12 @@ class WaterBillReceiptScreen extends StatelessWidget {
                       text: "View Receipt",
                       margin: EdgeInsets.symmetric(horizontal: 25.h),
                       onTap: () {
-                       // onTapViewreceipt(context);
-                       showModalBottomSheet(context: context, builder: (BuildContext context){
-                        return SizedBox();
-                       });
+                        // onTapViewreceipt(context);
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return SizedBox();
+                            });
                       })
                 ])),
             bottomNavigationBar:

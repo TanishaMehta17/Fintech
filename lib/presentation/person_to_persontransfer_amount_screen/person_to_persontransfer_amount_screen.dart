@@ -12,7 +12,9 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 // ignore_for_file: must_be_immutable
 class PersonToPersontransferAmountScreen extends StatelessWidget {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  PersonToPersontransferAmountScreen({Key? key}) : super(key: key);
+  var name, accNo;
+  PersonToPersontransferAmountScreen(this.name, this.accNo, {Key? key})
+      : super(key: key);
 
   TextEditingController amountController = TextEditingController();
 
@@ -276,14 +278,14 @@ class PersonToPersontransferAmountScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the personToPersonConfirmationScreen.
   onTapNext(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.personToPersonConfirmationScreen);
+    //Navigator.pushNamed(context, AppRoutes.personToPersonConfirmationScreen);
 
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) =>
-    //         PersonToPersonConfirmationScreen(amountController.text),
-    //   ),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PersonToPersonConfirmationScreen(
+            name, accNo, amountController.text.toString()),
+      ),
+    );
   }
 }

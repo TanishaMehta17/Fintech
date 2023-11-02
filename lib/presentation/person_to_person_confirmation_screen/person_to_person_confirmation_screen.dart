@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/person_to_person_transfer_screen/person_to_person_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -9,10 +10,12 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class PersonToPersonConfirmationScreen extends StatelessWidget {
-  PersonToPersonConfirmationScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  PersonToPersonConfirmationScreen(this.name, this.accNo, this.amt, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-  var amt;
+
   // PersonToPersonConfirmationScreen(this.amt) {
   //   //amt = amt;
   // }
@@ -75,7 +78,7 @@ class PersonToPersonConfirmationScreen extends StatelessWidget {
                                                 Padding(
                                                     padding: EdgeInsets.only(
                                                         top: 3.v),
-                                                    child: Text("Jonathan",
+                                                    child: Text("$name",
                                                         style: CustomTextStyles
                                                             .titleLargeBluegray900_1)),
                                                 CustomImageView(
@@ -87,7 +90,7 @@ class PersonToPersonConfirmationScreen extends StatelessWidget {
                                                         bottom: 12.v))
                                               ]),
                                           SizedBox(height: 2.v),
-                                          Text("1******6103",
+                                          Text("$accNo",
                                               style: CustomTextStyles
                                                   .titleMediumGray5000116_1)
                                         ]))
@@ -235,7 +238,14 @@ class PersonToPersonConfirmationScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the personToPersonTransferScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.personToPersonTransferScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.personToPersonTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => PersonToPersonTransferScreen(name, accNo, amt)),
+    );
   }
 }

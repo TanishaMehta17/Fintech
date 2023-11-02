@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'tanisha_s_application14',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.bankToBankTransferAmountIcicScreen,
+      initialRoute: AppRoutes.moneyTransferScreen,
       routes: AppRoutes.routes,
     );
   }
