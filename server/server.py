@@ -42,11 +42,10 @@ def home_loan():
 
 @app.route('/gold_loan',methods=['POST'])
 def gold_loan():
+    token=request.headers.get('token')
 
-   # token=request.headers.get('token')
-
-   # if not token:
-        #return jsonify({'message':'token is missing'}), 401
+    if not token:
+        return jsonify({'message':'token is missing'}), 401
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
@@ -56,6 +55,11 @@ def gold_loan():
         data=request.get_json()
         print(data)
         print(datetime.datetime.now())
+        data["customer_id"]="sdvasfdbadfbe"
+        data["timestamp"]=datetime.datetime.now()
+        with open("data.csv","a") as file:
+                writer=csv.DictWriter(file,fieldnames=fields)
+                writer.writerow(data)
         return jsonify({'message': 'Your Gold loan is accepted ,you will get the loan soon '}), 200
     except jwt.ExpiredSignatureError:
         return jsonify({'message': 'token is expired'}), 401
