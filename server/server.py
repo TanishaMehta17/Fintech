@@ -11,21 +11,25 @@ CORS(app)
 ##Home_loan
 @app.route('/home_loan',methods=['POST'])
 def home_loan():
+    token=request.headers.get('token')
 
-   # token=request.headers.get('token')
-
-   # if not token:
-        #return jsonify({'message':'token is missing'}), 401
+    if not token:
+        return jsonify({'message':'token is missing'}), 401
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         token=request.header.get('token')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
         print(data)
         print(datetime.datetime.now())
+        data["customer_id"]="sdvasfdbadfbe"
+        data["timestamp"]=datetime.datetime.now()
+        with open("data.csv","a") as file:
+                writer=csv.DictWriter(file,fieldnames=fields)
+                writer.writerow(data)
         return jsonify({'message': 'Your home loan is accepted ,you will get the loan soon '}), 200
     except jwt.ExpiredSignatureError:
         return jsonify({'message': 'token is expired'}), 401
@@ -46,7 +50,7 @@ def gold_loan():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -70,7 +74,7 @@ def education_loan():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -94,7 +98,7 @@ def car_loan():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -148,7 +152,7 @@ def disney():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -173,7 +177,7 @@ def spotify():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -199,7 +203,7 @@ def water_bill():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -222,7 +226,7 @@ def internet_bill():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -245,7 +249,7 @@ def electricity_bill():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -267,7 +271,7 @@ def bank_to_bank():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -289,7 +293,7 @@ def bank_to_bank():
 
 #     try:
 #         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-#         Password=request.headers.get('Password')
+#         Password=request.headers.get('pin')
 #         if Password=='0000':
 #             print("Password varified")
 #         data=request.get_json()
@@ -311,7 +315,7 @@ def bank_to_bank():
 
 #     try:
 #         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-#         Password=request.headers.get('Password')
+#         Password=request.headers.get('pin')
 #         if Password=='0000':
 #             print("Password varified")
 #         data=request.get_json()
@@ -334,7 +338,7 @@ def recharge():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -356,7 +360,7 @@ def recharge():
 
 #     try:
 #         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-#         Password=request.headers.get('Password')
+#         Password=request.headers.get('pin')
 #         if Password=='0000':
 #             print("Password varified")
 #         data=request.get_json()
@@ -378,7 +382,7 @@ def recharge():
 
 #     try:
 #         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-#         Password=request.headers.get('Password')
+#         Password=request.headers.get('pin')
 #         if Password=='0000':
 #             print("Password varified")
 #         data=request.get_json()
@@ -403,7 +407,7 @@ def donationcareclub():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -425,7 +429,7 @@ def donationheadfoundation():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -448,7 +452,7 @@ def birthdaycard():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -476,7 +480,7 @@ def eid_card():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -501,7 +505,7 @@ def marrigecard():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -529,7 +533,7 @@ def homeinsurance():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -551,7 +555,7 @@ def family_insurance():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -575,7 +579,7 @@ def health_insurance():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -598,7 +602,7 @@ def kyc_pan():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -621,7 +625,7 @@ def kyc_voterid():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -644,7 +648,7 @@ def kyc_dv():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -666,7 +670,7 @@ def Kyc_adharcard():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -688,7 +692,7 @@ def phone_number_kyc():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -718,7 +722,7 @@ def fd():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -743,7 +747,7 @@ def rd():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -768,7 +772,7 @@ def apy():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -789,7 +793,7 @@ def fast_tag():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
@@ -811,7 +815,7 @@ def person_to_person():
 
     try:
         #data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
-        Password=request.headers.get('Password')
+        Password=request.headers.get('pin')
         if Password=='0000':
             print("Password varified")
         data=request.get_json()
