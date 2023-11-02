@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.statusCode == 200) {
       Map<String, dynamic> token = jsonDecode(response.body);
 
-      Navigator.pushNamed(context, AppRoutes.netflixScreen, arguments: {
+      Navigator.pushNamed(context, AppRoutes.dashboardScreen, arguments: {
         "token": token,
       });
     } else if (response.statusCode == 400) {
