@@ -9,7 +9,10 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class MarriageGiftConfirmationSuccessfulTransferScreen extends StatelessWidget {
-  MarriageGiftConfirmationSuccessfulTransferScreen({Key? key})
+  var name, accNo, amt;
+  MarriageGiftConfirmationSuccessfulTransferScreen(
+      this.name, this.accNo, this.amt,
+      {Key? key})
       : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -63,38 +66,39 @@ class MarriageGiftConfirmationSuccessfulTransferScreen extends StatelessWidget {
                           text: "View Receipt",
                           margin: EdgeInsets.fromLTRB(25.h, 72.v, 25.h, 3.v),
                           onTap: () {
-                            
-                            
                             //onTapViewreceipt(context);
-                            showModalBottomSheet(context: context, builder: (BuildContext context){
-                              return SizedBox(
-                                 width: double.maxFinite,
-          child: Column(
-            children: [
-               Padding(
-                 padding: const EdgeInsets.only(top:8.0),
-                 child: Column(
-                      children: [
-                        CustomImageView(
-                          imagePath: ImageConstant.imgEllipse175,
-                          height: 75.adaptSize,
-                          width: 75.adaptSize,
-                          radius: BorderRadius.circular(
-                            37.h,
-                          ),
-                        ),
-                        _buildMarriageGiftCard(context),
-                      ],
-                    ),
-               ),
-             
-            ],
-          ),
-                              );
-                            });
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    width: double.maxFinite,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8.0),
+                                          child: Column(
+                                            children: [
+                                              CustomImageView(
+                                                imagePath:
+                                                    ImageConstant.imgEllipse175,
+                                                height: 75.adaptSize,
+                                                width: 75.adaptSize,
+                                                radius: BorderRadius.circular(
+                                                  37.h,
+                                                ),
+                                              ),
+                                              _buildMarriageGiftCard(
+                                                  context, name, accNo, amt),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
                           })
                     ])),
-
             bottomNavigationBar:
                 CustomBottomBar(onChanged: (BottomBarEnum type) {})));
   }
@@ -116,120 +120,120 @@ class MarriageGiftConfirmationSuccessfulTransferScreen extends StatelessWidget {
     Navigator.pushNamed(context, AppRoutes.marrigeGiftCardReciptScreen);
   }
 }
- Widget _buildMarriageGiftCard(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 30.h,
-        vertical: 56.v,
-      ),
-      decoration: AppDecoration.fillWhiteA.copyWith(
-        borderRadius: BorderRadiusStyle.customBorderTL20,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Marriage Gift",
-            style: CustomTextStyles.titleMedium16_1,
+
+Widget _buildMarriageGiftCard(BuildContext context, name, accNo, amt) {
+  return Container(
+    padding: EdgeInsets.symmetric(
+      horizontal: 30.h,
+      vertical: 56.v,
+    ),
+    decoration: AppDecoration.fillWhiteA.copyWith(
+      borderRadius: BorderRadiusStyle.customBorderTL20,
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Marriage Gift",
+          style: CustomTextStyles.titleMedium16_1,
+        ),
+        SizedBox(height: 13.v),
+        Text(
+          "$accNo",
+          style: CustomTextStyles.titleMedium16_1,
+        ),
+        SizedBox(height: 21.v),
+        Container(
+          width: 249.h,
+          padding: EdgeInsets.symmetric(
+            horizontal: 24.h,
+            vertical: 9.v,
           ),
-          SizedBox(height: 13.v),
-          Text(
-            "1******2135",
-            style: CustomTextStyles.titleMedium16_1,
+          decoration: AppDecoration.outlineBluegray500112.copyWith(
+            borderRadius: BorderRadiusStyle.roundedBorder10,
           ),
-          SizedBox(height: 21.v),
-          Container(
-            width: 249.h,
-            padding: EdgeInsets.symmetric(
-              horizontal: 24.h,
-              vertical: 9.v,
-            ),
-            decoration: AppDecoration.outlineBluegray500112.copyWith(
-              borderRadius: BorderRadiusStyle.roundedBorder10,
-            ),
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Transactions Status:",
-                    style: CustomTextStyles.titleMediumTealA7000116,
-                  ),
-                  TextSpan(
-                    text: " Paid ",
-                    style: CustomTextStyles.titleMediumTealA7000116,
-                  ),
-                ],
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          SizedBox(height: 18.v),
-          RichText(
+          child: RichText(
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "150.00",
-                  style: theme.textTheme.displaySmall,
+                  text: "Transactions Status:",
+                  style: CustomTextStyles.titleMediumTealA7000116,
                 ),
                 TextSpan(
-                  text: "INR",
-                  style: theme.textTheme.titleLarge,
+                  text: " Paid ",
+                  style: CustomTextStyles.titleMediumTealA7000116,
                 ),
               ],
             ),
             textAlign: TextAlign.left,
           ),
-          SizedBox(height: 20.v),
-          _buildTransferFee(
-            context,
-            transferFee: "Card Type",
-            price: "Debit Card",
-          ),
-          SizedBox(height: 17.v),
-          Divider(),
-          SizedBox(height: 19.v),
-          _buildTransferFee(
-            context,
-            transferFee: "Transfer Fee",
-            price: "0.00INR",
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Common widget
-  Widget _buildTransferFee(
-    BuildContext context, {
-    required String transferFee,
-    required String price,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          transferFee,
-          style: CustomTextStyles.titleMediumPink200.copyWith(
-            color: appTheme.pink200,
-          ),
         ),
+        SizedBox(height: 18.v),
         RichText(
           text: TextSpan(
             children: [
               TextSpan(
-                text: "0.00",
-                style: CustomTextStyles.titleMediumBluegray90016_2,
+                text: "$amt",
+                style: theme.textTheme.displaySmall,
               ),
               TextSpan(
                 text: "INR",
-                style: theme.textTheme.labelSmall,
+                style: theme.textTheme.titleLarge,
               ),
             ],
           ),
           textAlign: TextAlign.left,
         ),
+        SizedBox(height: 20.v),
+        _buildTransferFee(
+          context,
+          transferFee: "Card Type",
+          price: "Debit Card",
+        ),
+        SizedBox(height: 17.v),
+        Divider(),
+        SizedBox(height: 19.v),
+        _buildTransferFee(
+          context,
+          transferFee: "Transfer Fee",
+          price: "0.00INR",
+        ),
       ],
-    );
-  }
+    ),
+  );
+}
 
+/// Common widget
+Widget _buildTransferFee(
+  BuildContext context, {
+  required String transferFee,
+  required String price,
+}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(
+        transferFee,
+        style: CustomTextStyles.titleMediumPink200.copyWith(
+          color: appTheme.pink200,
+        ),
+      ),
+      RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: "0.00",
+              style: CustomTextStyles.titleMediumBluegray90016_2,
+            ),
+            TextSpan(
+              text: "INR",
+              style: theme.textTheme.labelSmall,
+            ),
+          ],
+        ),
+        textAlign: TextAlign.left,
+      ),
+    ],
+  );
+}

@@ -10,7 +10,8 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 // ignore_for_file: must_be_immutable
 class HomeInsuranceConfirmationSuccessfulTransferScreen
     extends StatelessWidget {
-  HomeInsuranceConfirmationSuccessfulTransferScreen({Key? key})
+  var acc;
+  HomeInsuranceConfirmationSuccessfulTransferScreen(this.acc, {Key? key})
       : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -90,7 +91,7 @@ class HomeInsuranceConfirmationSuccessfulTransferScreen
                                                 ),
                                               ),
                                               _buildHomeInsuranceColumn(
-                                                  context),
+                                                  context, acc),
                                             ],
                                           ),
                                         ),
@@ -123,7 +124,7 @@ class HomeInsuranceConfirmationSuccessfulTransferScreen
   // }
 }
 
-Widget _buildHomeInsuranceColumn(BuildContext context) {
+Widget _buildHomeInsuranceColumn(BuildContext context, acc) {
   return Container(
     padding: EdgeInsets.symmetric(
       horizontal: 30.h,
@@ -141,7 +142,7 @@ Widget _buildHomeInsuranceColumn(BuildContext context) {
         ),
         SizedBox(height: 15.v),
         Text(
-          "1******2135",
+          "$acc",
           style: CustomTextStyles.titleMediumGray70016,
         ),
         SizedBox(height: 21.v),

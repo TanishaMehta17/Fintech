@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/transfer_confirmation_bank_to_bank_icici_screen/transfer_confirmation_bank_to_bank_icici_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,10 @@ import 'package:tanisha_s_application14/widgets/custom_radio_button.dart';
 
 // ignore_for_file: must_be_immutable
 class BankToBankTransferConfirmationIcicScreen extends StatelessWidget {
-  BankToBankTransferConfirmationIcicScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  BankToBankTransferConfirmationIcicScreen(this.name, this.accNo, thisamt,
+      {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -96,7 +100,7 @@ class BankToBankTransferConfirmationIcicScreen extends StatelessWidget {
                                                                           top: 5
                                                                               .v),
                                                                   child: Text(
-                                                                      "Jonathan",
+                                                                      "$name",
                                                                       style: CustomTextStyles
                                                                           .titleLargeBluegray900_1)),
                                                               CustomImageView(
@@ -113,7 +117,7 @@ class BankToBankTransferConfirmationIcicScreen extends StatelessWidget {
                                                                               12.v))
                                                             ]),
                                                         SizedBox(height: 2.v),
-                                                        Text("1******6103",
+                                                        Text("$accNo",
                                                             style: CustomTextStyles
                                                                 .titleMediumGray5000116_1)
                                                       ]))
@@ -203,7 +207,7 @@ class BankToBankTransferConfirmationIcicScreen extends StatelessWidget {
                                                         text:
                                                             TextSpan(children: [
                                                           TextSpan(
-                                                              text: "250.00",
+                                                              text: "$amt",
                                                               style: CustomTextStyles
                                                                   .titleLargeBluegray900),
                                                           TextSpan(
@@ -272,7 +276,7 @@ class BankToBankTransferConfirmationIcicScreen extends StatelessWidget {
                                                         text:
                                                             TextSpan(children: [
                                                           TextSpan(
-                                                              text: "250.00",
+                                                              text: "$amt",
                                                               style: CustomTextStyles
                                                                   .titleLargeBluegray900),
                                                           TextSpan(
@@ -313,8 +317,16 @@ class BankToBankTransferConfirmationIcicScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the transferConfirmationBankToBankIciciScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.transferConfirmationBankToBankIciciScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.transferConfirmationBankToBankIciciScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              TransferConfirmationBankToBankIciciScreen(name, accNo, amt)),
+    );
   }
 }

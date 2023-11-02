@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/person_to_person_confirmation_successful_transfer_screen/person_to_person_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,9 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class PersonToPersonTransferScreen extends StatelessWidget {
-  PersonToPersonTransferScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  PersonToPersonTransferScreen(this.name, this.accNo, this.amt, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -85,37 +88,38 @@ class PersonToPersonTransferScreen extends StatelessWidget {
                                           child: Padding(
                                               padding: EdgeInsets.only(
                                                   left: 94.h, top: 22.v),
-                                              child: Text("Jonathan",
+                                              child: Text("$name",
                                                   style: theme.textTheme
                                                       .headlineMedium))),
                                       SizedBox(height: 6.v),
                                       Align(
                                           alignment: Alignment.centerLeft,
-                                          child: Text("1******6103",
+                                          child: Text("$accNo",
                                               style: CustomTextStyles
                                                   .titleMedium16_1)),
-                                      CustomTextFormField(
-                                          // controller: group6763Controller,
-                                          margin: EdgeInsets.only(
-                                              left: 22.h,
-                                              top: 19.v,
-                                              right: 22.h),
-                                          hintText:
-                                              "Transactions Status: Pending",
-                                          hintStyle: CustomTextStyles
-                                              .titleMediumPrimary16_1,
-                                          //textInputAction: TextInputAction.done,
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 23.h, vertical: 9.v),
-                                          borderDecoration:
-                                              TextFormFieldStyleHelper
-                                                  .outlineBlack,
-                                          fillColor: Colors.red[100]),
+                                      Container(
+                                          width: 249.h,
+                                          height: 35.v,
+                                          decoration: BoxDecoration(
+                                              color: Color(0XFF1CCD9D)
+                                                  .withOpacity(0.15),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              'Transactions Status: Sent',
+                                              style: TextStyle(
+                                                  color: Color(0XFF1CCD9D)),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),
                                       SizedBox(height: 15.v),
                                       RichText(
                                           text: TextSpan(children: [
                                             TextSpan(
-                                                text: "250.00",
+                                                text: "$amt",
                                                 style: CustomTextStyles
                                                     .displaySmallRegular_1),
                                             TextSpan(
@@ -187,8 +191,17 @@ class PersonToPersonTransferScreen extends StatelessWidget {
     Navigator.pop(context);
   }
 
+  // onTapcon(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.personToPersonConfirmationSuccessfulTransferScreen);
+  // }
   onTapcon(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.personToPersonConfirmationSuccessfulTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              PersonToPersonConfirmationSuccessfulTransferScreen(
+                  name, accNo, amt)),
+    );
   }
 }

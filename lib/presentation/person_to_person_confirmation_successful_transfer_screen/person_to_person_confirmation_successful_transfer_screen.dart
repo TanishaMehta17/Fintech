@@ -11,7 +11,10 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 // ignore_for_file: must_be_immutable
 class PersonToPersonConfirmationSuccessfulTransferScreen
     extends StatelessWidget {
-  PersonToPersonConfirmationSuccessfulTransferScreen({Key? key})
+  var amt, name, accNo;
+  PersonToPersonConfirmationSuccessfulTransferScreen(
+      this.name, this.accNo, this.amt,
+      {Key? key})
       : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -75,7 +78,8 @@ class PersonToPersonConfirmationSuccessfulTransferScreen
                                               37.h,
                                             ),
                                           ),
-                                          _buildPersonToPersonFrame(context),
+                                          _buildPersonToPersonFrame(
+                                              context, name, accNo, amt),
                                         ],
                                       ),
                                     ),
@@ -102,7 +106,7 @@ class PersonToPersonConfirmationSuccessfulTransferScreen
 }
 
 /// Section Widget
-Widget _buildPersonToPersonFrame(BuildContext context) {
+Widget _buildPersonToPersonFrame(BuildContext context, name, accNo, amt) {
   return Container(
     padding: EdgeInsets.symmetric(
       horizontal: 30.h,
@@ -121,7 +125,7 @@ Widget _buildPersonToPersonFrame(BuildContext context) {
           child: Padding(
             padding: EdgeInsets.only(left: 131.h),
             child: Text(
-              "Jonathan",
+              "$name",
               style: theme.textTheme.headlineMedium,
             ),
           ),
@@ -132,7 +136,7 @@ Widget _buildPersonToPersonFrame(BuildContext context) {
           child: Padding(
             padding: EdgeInsets.only(left: 143.h),
             child: Text(
-              "1******6103",
+              "$accNo",
               style: CustomTextStyles.titleMediumGray5000116,
             ),
           ),
@@ -159,7 +163,7 @@ Widget _buildPersonToPersonFrame(BuildContext context) {
           text: TextSpan(
             children: [
               TextSpan(
-                text: "250.00",
+                text: "$amt",
                 style: CustomTextStyles.displaySmallRegular,
               ),
               TextSpan(

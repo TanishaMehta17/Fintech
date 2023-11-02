@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/education_loan_payment_screen/education_loan_payment_screen.dart';
+
 import '../education_loan_payment_details_screen/widgets/chipview8_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -370,7 +372,15 @@ class _EducationLoanPaymentDetailsScreenState
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the educationLoanPaymentScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.educationLoanPaymentScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.educationLoanPaymentScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              EducationLoanPaymentScreen(cnicController.text.toString())),
+    );
   }
 }

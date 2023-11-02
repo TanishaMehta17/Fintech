@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/home_insurance_transfer_confirmation_screen/home_insurance_transfer_confirmation_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,8 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class HomeInsuranceConfirmationScreen extends StatelessWidget {
-  HomeInsuranceConfirmationScreen({Key? key}) : super(key: key);
+  var acc;
+  HomeInsuranceConfirmationScreen(this.acc, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -262,8 +264,15 @@ class HomeInsuranceConfirmationScreen extends StatelessWidget {
     Navigator.pop(context);
   }
 
+  // onTaphousecon(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.homeInsuranceTransferConfirmationScreen);
+  // }
   onTaphousecon(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.homeInsuranceTransferConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => HomeInsuranceTransferConfirmationScreen(acc)),
+    );
   }
 }

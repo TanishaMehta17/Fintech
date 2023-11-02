@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/gold_loan_payment_screen/gold_loan_payment_screen.dart';
+
 import '../gold_loan_details_screen/widgets/chipview6_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -256,10 +258,10 @@ class _GoldLoanDetailsScreenState extends State<GoldLoanDetailsScreen> {
                                     controller: cnicController,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'CNIC cannot be empty';
+                                        return 'Amount cannot be empty';
                                       }
-                                      if (!isValidCNIC(value)) {
-                                        return 'Please enter a valid CNIC';
+                                      if (double.tryParse(value) == null) {
+                                        return 'Please enter a valid number';
                                       }
                                       return null;
                                     },
@@ -374,7 +376,15 @@ class _GoldLoanDetailsScreenState extends State<GoldLoanDetailsScreen> {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the goldLoanPaymentScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.goldLoanPaymentScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.goldLoanPaymentScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              GoldLoanPaymentScreen(cnicController.text.toString())),
+    );
   }
 }

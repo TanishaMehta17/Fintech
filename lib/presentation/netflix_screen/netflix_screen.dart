@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/netflix_confirmation_successful_transfer_screen/netflix_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -14,6 +15,11 @@ import 'dart:convert';
 
 // ignore_for_file: must_be_immutable
 class NetflixScreen extends StatelessWidget {
+  var acc;
+  NetflixScreen(this.acc, {Key? key}) : super(key: key);
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -22,9 +28,32 @@ class NetflixScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  NetflixScreen({Key? key}) : super(key: key);
+  void onTapVerifyotp(BuildContext context) {
+    if (number_controller.text.isEmpty ||
+        number_controller1.text.isEmpty ||
+        number_controller2.text.isEmpty ||
+        number_controller3.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'All OTP fields must be filled',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      // All OTP fields are filled, navigate to the next screen.
+      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
 
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                NetflixConfirmationSuccessfulTransferScreen(acc)),
+      );
+    }
+  }
 
   TextEditingController transactionsStaController = TextEditingController();
 
@@ -276,7 +305,7 @@ class NetflixScreen extends StatelessWidget {
                             onTap: () {
                               // onTapPaynow(context);
                               //onTapConfirm(context);
-                              onTapConfirm(context);
+                              onTapVerifyotp(context);
                             },
                           ),
                         )

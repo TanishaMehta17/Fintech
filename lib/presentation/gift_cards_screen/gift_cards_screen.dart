@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/marrige_transfer_confirmation_screen/marrige_transfer_confirmation_screen.dart';
+
 import '../gift_cards_screen/widgets/chipviewgroupse_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -490,7 +492,17 @@ class _GiftCardsScreenState extends State<GiftCardsScreen> {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the marrigeTransferConfirmationScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.marrigeTransferConfirmationScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.marrigeTransferConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => MarrigeTransferConfirmationScreen(
+              nameController.text.toString(),
+              recipientAccounController.text.toString(),
+              amountController.text.toString())),
+    );
   }
 }

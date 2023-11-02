@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/eid_gift_confirmation_successful_transfer_screen/eid_gift_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -40,7 +41,10 @@ class EidPasswordForTransfareConformationScreen extends StatelessWidget {
     }
   }
 
-  EidPasswordForTransfareConformationScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  EidPasswordForTransfareConformationScreen(this.name, this.accNo, this.amt,
+      {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -119,13 +123,13 @@ class EidPasswordForTransfareConformationScreen extends StatelessWidget {
                                       Padding(
                                           padding: EdgeInsets.only(
                                               left: 54.h, top: 42.v),
-                                          child: Text("David Miller",
+                                          child: Text("$name",
                                               style: theme
                                                   .textTheme.headlineMedium)),
                                       Padding(
                                           padding: EdgeInsets.only(
                                               left: 84.h, top: 6.v),
-                                          child: Text("1******2135",
+                                          child: Text("$accNo",
                                               style: CustomTextStyles
                                                   .titleMedium16_1)),
                                       SizedBox(height: 19.v),
@@ -161,7 +165,7 @@ class EidPasswordForTransfareConformationScreen extends StatelessWidget {
                                           child: RichText(
                                               text: TextSpan(children: [
                                                 TextSpan(
-                                                    text: "150.00",
+                                                    text: "$amt",
                                                     style: theme.textTheme
                                                         .displaySmall),
                                                 TextSpan(
@@ -359,8 +363,16 @@ class EidPasswordForTransfareConformationScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the eidGiftConfirmationSuccessfulTransferScreen.
+  // onTapConfirm(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.eidGiftConfirmationSuccessfulTransferScreen);
+  // }
   onTapConfirm(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.eidGiftConfirmationSuccessfulTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              EidGiftConfirmationSuccessfulTransferScreen(name, accNo, amt)),
+    );
   }
 }

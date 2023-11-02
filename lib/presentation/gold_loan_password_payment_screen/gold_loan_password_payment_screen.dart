@@ -12,6 +12,10 @@ import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart'
 
 // ignore_for_file: must_be_immutable
 class GoldLoanPasswordPaymentScreen extends StatelessWidget {
+  var amt;
+  GoldLoanPasswordPaymentScreen(this.amt, {Key? key}) : super(key: key);
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -39,10 +43,6 @@ class GoldLoanPasswordPaymentScreen extends StatelessWidget {
       Navigator.pushNamed(context, AppRoutes.goldLoanRecipytScreen);
     }
   }
-
-  GoldLoanPasswordPaymentScreen({Key? key}) : super(key: key);
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class GoldLoanPasswordPaymentScreen extends StatelessWidget {
                                                                     children: [
                                                                       TextSpan(
                                                                           text:
-                                                                              "12,5800.00",
+                                                                              "$amt",
                                                                           style:
                                                                               CustomTextStyles.titleLargeBluegray900_2),
                                                                       TextSpan(

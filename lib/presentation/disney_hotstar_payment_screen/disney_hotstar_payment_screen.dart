@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/disney_hoststar_payment_screen/disney_hoststar_payment_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -146,7 +147,7 @@ class DisneyHotstarPaymentScreen extends StatelessWidget {
                                                               children: [
                                                                 TextSpan(
                                                                     text:
-                                                                        "3.50",
+                                                                        "700.00",
                                                                     style: CustomTextStyles
                                                                         .titleLargeBluegray900_2),
                                                                 TextSpan(
@@ -436,12 +437,21 @@ class DisneyHotstarPaymentScreen extends StatelessWidget {
     Navigator.pop(context);
   }
 
+  onTapSend(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => DisneyHoststarPaymentScreen(
+              cardNumberController.text.toString())),
+    );
+  }
+
   /// Navigates to the disneyHoststarPaymentScreen when the action is triggered.
   ///
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the disneyHoststarPaymentScreen.
-  onTapSend(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.disneyHoststarPaymentScreen);
-  }
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.disneyHoststarPaymentScreen);
+  // }
 }

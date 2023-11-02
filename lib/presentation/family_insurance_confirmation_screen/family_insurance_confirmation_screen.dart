@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/family_transfer_confirmation_insurance_screen/family_transfer_confirmation_insurance_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,8 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class FamilyInsuranceConfirmationScreen extends StatelessWidget {
-  FamilyInsuranceConfirmationScreen({Key? key}) : super(key: key);
+  var acc;
+  FamilyInsuranceConfirmationScreen(this.acc, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -258,8 +260,15 @@ class FamilyInsuranceConfirmationScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the familyTransferConfirmationInsuranceScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.familyTransferConfirmationInsuranceScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.familyTransferConfirmationInsuranceScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => FamilyTransferConfirmationInsuranceScreen(acc)),
+    );
   }
 }

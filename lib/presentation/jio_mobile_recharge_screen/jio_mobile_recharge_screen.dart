@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/jio_confirmation_successful_transfer_one_screen/jio_confirmation_successful_transfer_one_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -19,9 +20,37 @@ class JioMobileRechargeScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  JioMobileRechargeScreen({Key? key}) : super(key: key);
+  var amt;
+  JioMobileRechargeScreen(this.amt, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  void onTapVerifyotp(BuildContext context) {
+    if (number_controller.text.isEmpty ||
+        number_controller1.text.isEmpty ||
+        number_controller2.text.isEmpty ||
+        number_controller3.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'All OTP fields must be filled',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      // All OTP fields are filled, navigate to the next screen.
+      // Navigator.pushNamed(
+      //     context, AppRoutes.jioConfirmationSuccessfulTransferOneScreen);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                JioConfirmationSuccessfulTransferOneScreen(amt)),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +166,7 @@ class JioMobileRechargeScreen extends StatelessWidget {
                                     RichText(
                                         text: TextSpan(children: [
                                           TextSpan(
-                                              text: "50.00",
+                                              text: "$amt",
                                               style:
                                                   theme.textTheme.displaySmall),
                                           TextSpan(
@@ -268,7 +297,8 @@ class JioMobileRechargeScreen extends StatelessWidget {
                             text: 'Pay Now',
                             width: 350,
                             onTap: () {
-                              onTapPaynow(context);
+                              //onTapPaynow(context);
+                              onTapVerifyotp(context);
                             },
                           ),
                         )

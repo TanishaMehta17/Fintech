@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/person_to_persontransfer_amount_screen/person_to_persontransfer_amount_screen.dart';
+
 import '../money_transfer_screen/widgets/userprofile_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -537,7 +539,17 @@ class MoneyTransferScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the personToPersontransferAmountScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.personToPersontransferAmountScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.personToPersontransferAmountScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => PersonToPersontransferAmountScreen(
+                nameController.text.toString(),
+                group7745Controller.text.toString(),
+              )),
+    );
   }
 }

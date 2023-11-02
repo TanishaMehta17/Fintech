@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/home_loan_detail_page_information_screen/home_loan_detail_page_information_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,8 @@ import 'package:tanisha_s_application14/widgets/custom_switch.dart';
 
 // ignore_for_file: must_be_immutable
 class LoanPaymentScreen extends StatelessWidget {
-  LoanPaymentScreen({Key? key}) : super(key: key);
+  var amt;
+  LoanPaymentScreen(this.amt, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -71,7 +73,7 @@ class LoanPaymentScreen extends StatelessWidget {
                                       RichText(
                                           text: TextSpan(children: [
                                             TextSpan(
-                                                text: "12,5800.00",
+                                                text: "$amt",
                                                 style: CustomTextStyles
                                                     .titleLargeBluegray900),
                                             TextSpan(
@@ -234,7 +236,14 @@ class LoanPaymentScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the homeLoanPaymentDoneScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.homeLoanDetailPageInformationScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homeLoanDetailPageInformationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => HomeLoanDetailPageInformationScreen(amt)),
+    );
   }
 }

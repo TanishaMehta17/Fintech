@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/bank_to_bank_transfer_confirmation_icic_screen/bank_to_bank_transfer_confirmation_icic_screen.dart';
+
 import '../bank_to_bank_transfer_amount_icic_screen/widgets/chipviewgroupni_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -243,8 +245,18 @@ class BankToBankTransferAmountIcicScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the bankToBankTransferConfirmationIcicScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.bankToBankTransferConfirmationIcicScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.bankToBankTransferConfirmationIcicScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => BankToBankTransferConfirmationIcicScreen(
+              nameController.text.toString(),
+              cardNumberController.text.toString(),
+              amountController.text.toString())),
+    );
   }
 }

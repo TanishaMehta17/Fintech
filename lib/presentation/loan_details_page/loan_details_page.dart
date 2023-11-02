@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/loan_payment_screen/loan_payment_screen.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
@@ -61,14 +62,17 @@ class LoanDetailsPageState extends State<LoanDetailsPage>
                             controller: cniclabeloneController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'CNIC cannot be empty';
+                                return 'Amount cannot be empty';
                               }
-                              if (!isValidCNIC(value)) {
-                                return 'Please enter a valid CNIC';
+                              // if (!isValidCNIC(value)) {
+                              //   return 'Please enter a valid CNIC';
+                              // }
+                              if (double.tryParse(value) == null) {
+                                return 'Please enter a valid number';
                               }
                               return null;
                             },
-                            hintText: "CNIC",
+                            hintText: "Amount",
                             hintStyle: theme.textTheme.bodyLarge!),
                         SizedBox(height: 29.v),
                         CustomTextFormField(
@@ -156,12 +160,16 @@ class LoanDetailsPageState extends State<LoanDetailsPage>
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the loanPaymentScreen.
-  onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.loanPaymentScreen);
-  }
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.loanPaymentScreen);
+  // }
 
-  bool isValidCNIC(String cnic) {
-    // Implement your CNIC validation logic here.
-    return true;
+  onTapContinue(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              LoanPaymentScreen(cniclabeloneController.text.toString())),
+    );
   }
 }

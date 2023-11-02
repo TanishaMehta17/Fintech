@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/car_loan_payment_screen/car_loan_payment_screen.dart';
+
 import '../car_loan_screen/widgets/chipview10_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -255,10 +257,13 @@ class _CarLoanScreenState extends State<CarLoanScreen> {
                               controller: cnicController,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'CNIC cannot be empty';
+                                  return 'Amount cannot be empty';
                                 }
-                                if (!isValidCNIC(value)) {
-                                  return 'Please enter a valid CNIC';
+                                // if (!isValidCNIC(value)) {
+                                //   return 'Please enter a valid CNIC';
+                                // }
+                                if (double.tryParse(value) == null) {
+                                  return 'Please enter a valid number';
                                 }
                                 return null;
                               },
@@ -370,12 +375,21 @@ class _CarLoanScreenState extends State<CarLoanScreen> {
     return true;
   }
 
+  onTapContinue(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              CarLoanPaymentScreen(cnicController.text.toString())),
+    );
+  }
+
   /// Navigates to the carLoanPaymentScreen when the action is triggered.
   ///
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the carLoanPaymentScreen.
-  onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.carLoanPaymentScreen);
-  }
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.carLoanPaymentScreen);
+  // }
 }

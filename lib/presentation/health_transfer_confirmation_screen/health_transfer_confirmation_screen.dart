@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/health_confirmation_successful_transfer_recipt_screen/health_confirmation_successful_transfer_recipt_screen.dart';
+import 'package:tanisha_s_application14/presentation/health_confirmation_successful_transfer_screen/health_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -9,7 +11,8 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class HealthTransferConfirmationScreen extends StatelessWidget {
-  HealthTransferConfirmationScreen({Key? key}) : super(key: key);
+  var acc;
+  HealthTransferConfirmationScreen(this.acc, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -82,7 +85,7 @@ class HealthTransferConfirmationScreen extends StatelessWidget {
                                           style:
                                               theme.textTheme.headlineMedium),
                                       SizedBox(height: 6.v),
-                                      Text("1******2135",
+                                      Text("$acc",
                                           style:
                                               CustomTextStyles.titleMedium16_1),
                                       SizedBox(height: 19.v),
@@ -187,8 +190,16 @@ class HealthTransferConfirmationScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the healthConfirmationSuccessfulTransferScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.healthConfirmationSuccessfulTransferScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.healthConfirmationSuccessfulTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              HealthConfirmationSuccessfulTransferScreen(acc)),
+    );
   }
 }

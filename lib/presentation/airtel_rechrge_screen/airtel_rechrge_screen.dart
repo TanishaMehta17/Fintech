@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/airtel_confirmation_successful_transfer_screen/airtel_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -11,6 +12,7 @@ import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart'
 
 // ignore_for_file: must_be_immutable
 class AirtelRechrgeScreen extends StatelessWidget {
+  var amt;
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -19,9 +21,36 @@ class AirtelRechrgeScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  AirtelRechrgeScreen({Key? key}) : super(key: key);
+  AirtelRechrgeScreen(this.amt, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  void onTapVerifyotp(BuildContext context) {
+    if (number_controller.text.isEmpty ||
+        number_controller1.text.isEmpty ||
+        number_controller2.text.isEmpty ||
+        number_controller3.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'All OTP fields must be filled',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      // All OTP fields are filled, navigate to the next screen.
+      // Navigator.pushNamed(
+      //     context, AppRoutes.jioConfirmationSuccessfulTransferOneScreen);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                AirtelConfirmationSuccessfulTransferScreen(amt)),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +166,7 @@ class AirtelRechrgeScreen extends StatelessWidget {
                                     RichText(
                                         text: TextSpan(children: [
                                           TextSpan(
-                                              text: "50.00",
+                                              text: "$amt",
                                               style:
                                                   theme.textTheme.displaySmall),
                                           TextSpan(
@@ -268,7 +297,8 @@ class AirtelRechrgeScreen extends StatelessWidget {
                             text: 'Pay Now',
                             width: 350,
                             onTap: () {
-                              onTapPaynow(context);
+                              //ont onTapPaynow(context);
+                              onTapVerifyotp(context);
                             },
                           ),
                         )
@@ -293,8 +323,16 @@ class AirtelRechrgeScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the airtelConfirmationSuccessfulTransferScreen.
+  // onTapPaynow(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.airtelConfirmationSuccessfulTransferScreen);
+  // }
   onTapPaynow(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.airtelConfirmationSuccessfulTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              AirtelConfirmationSuccessfulTransferScreen(amt)),
+    );
   }
 }

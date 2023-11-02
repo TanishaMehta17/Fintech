@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/disney_hostarconfirmation_successful_transfer_reci_pt_screen/disney_hostarconfirmation_successful_transfer_reci_pt_screen.dart';
+import 'package:tanisha_s_application14/presentation/disney_hostarconfirmation_successful_transfer_screen/disney_hostarconfirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -12,6 +14,11 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class PaymentOfDisneyHotstarScreen extends StatelessWidget {
+  var acc;
+  PaymentOfDisneyHotstarScreen(this.acc, {Key? key}) : super(key: key);
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -20,9 +27,32 @@ class PaymentOfDisneyHotstarScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  PaymentOfDisneyHotstarScreen({Key? key}) : super(key: key);
+  void onTapVerifyotp(BuildContext context) {
+    if (number_controller.text.isEmpty ||
+        number_controller1.text.isEmpty ||
+        number_controller2.text.isEmpty ||
+        number_controller3.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'All OTP fields must be filled',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      // All OTP fields are filled, navigate to the next screen.
+      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
 
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                DisneyHostarconfirmationSuccessfulTransferScreen(acc)),
+      );
+    }
+  }
 
   TextEditingController group6763Controller = TextEditingController();
 
@@ -105,7 +135,7 @@ class PaymentOfDisneyHotstarScreen extends StatelessWidget {
                                     Text("Disney+Hotstar",
                                         style: theme.textTheme.headlineMedium),
                                     SizedBox(height: 6.v),
-                                    Text("2******6125",
+                                    Text("$acc",
                                         style:
                                             CustomTextStyles.titleMedium16_1),
                                     SizedBox(height: 19.v),
@@ -141,7 +171,7 @@ class PaymentOfDisneyHotstarScreen extends StatelessWidget {
                                     RichText(
                                         text: TextSpan(children: [
                                           TextSpan(
-                                              text: "50.00",
+                                              text: "300.00",
                                               style:
                                                   theme.textTheme.displaySmall),
                                           TextSpan(
@@ -273,7 +303,8 @@ class PaymentOfDisneyHotstarScreen extends StatelessWidget {
                             width: 350,
                             onTap: () {
                               // onTapPaynow(context);
-                              onTapConfirm(context);
+                              // onTapConfirm(context);
+                              onTapVerifyotp(context);
                             },
                           ),
                         )

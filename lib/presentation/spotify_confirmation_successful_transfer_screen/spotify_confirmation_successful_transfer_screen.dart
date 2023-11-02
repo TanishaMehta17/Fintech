@@ -9,7 +9,9 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class SpotifyConfirmationSuccessfulTransferScreen extends StatelessWidget {
-  SpotifyConfirmationSuccessfulTransferScreen({Key? key}) : super(key: key);
+  var acc;
+  SpotifyConfirmationSuccessfulTransferScreen(this.acc, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -61,18 +63,20 @@ class SpotifyConfirmationSuccessfulTransferScreen extends StatelessWidget {
                           text: "View Receipt",
                           margin: EdgeInsets.fromLTRB(25.h, 72.v, 25.h, 3.v),
                           onTap: () {
-                           // onTapViewreceipt(context);
-                           showModalBottomSheet(context: context, builder: (BuildContext context){
-                            return SizedBox(
-                               width: double.maxFinite,
-          child: Column(
-            children: [
-              Spacer(),
-              _buildSpotifyConfirmation(context),
-            ],
-          ),
-                            );
-                           });
+                            // onTapViewreceipt(context);
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    width: double.maxFinite,
+                                    child: Column(
+                                      children: [
+                                        Spacer(),
+                                        _buildSpotifyConfirmation(context, acc),
+                                      ],
+                                    ),
+                                  );
+                                });
                           })
                     ])),
             bottomNavigationBar:
@@ -97,133 +101,134 @@ class SpotifyConfirmationSuccessfulTransferScreen extends StatelessWidget {
         context, AppRoutes.spotifyConfirmationSuccessfulTransferReciptScreen);
   }
 }
-Widget _buildSpotifyConfirmation(BuildContext context) {
-    return SizedBox(
-      height: 429.v,
-      width: 427.h,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 29.h,
-                vertical: 47.v,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadiusStyle.customBorderTL20,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Spotify",
-                    style: theme.textTheme.headlineMedium,
+
+Widget _buildSpotifyConfirmation(BuildContext context, acc) {
+  return SizedBox(
+    height: 429.v,
+    width: 427.h,
+    child: Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 29.h,
+              vertical: 47.v,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadiusStyle.customBorderTL20,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Spotify",
+                  style: theme.textTheme.headlineMedium,
+                ),
+                SizedBox(height: 16.v),
+                Text(
+                  "$acc",
+                  style: CustomTextStyles.titleMediumGray5000116,
+                ),
+                SizedBox(height: 13.v),
+                Container(
+                  width: 249.h,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.h,
+                    vertical: 9.v,
                   ),
-                  SizedBox(height: 16.v),
-                  Text(
-                    "2******6125",
-                    style: CustomTextStyles.titleMediumGray5000116,
+                  decoration: AppDecoration.outlineBluegray500112.copyWith(
+                    borderRadius: BorderRadiusStyle.roundedBorder10,
                   ),
-                  SizedBox(height: 13.v),
-                  Container(
-                    width: 249.h,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 24.h,
-                      vertical: 9.v,
-                    ),
-                    decoration: AppDecoration.outlineBluegray500112.copyWith(
-                      borderRadius: BorderRadiusStyle.roundedBorder10,
-                    ),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Transactions Status:",
-                            style: CustomTextStyles.titleMediumTealA7000116,
-                          ),
-                          TextSpan(
-                            text: " Paid ",
-                            style: CustomTextStyles.titleMediumTealA7000116,
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  SizedBox(height: 29.v),
-                  RichText(
+                  child: RichText(
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "10.00",
-                          style: CustomTextStyles.displaySmall34,
+                          text: "Transactions Status:",
+                          style: CustomTextStyles.titleMediumTealA7000116,
                         ),
                         TextSpan(
-                          text: "INR",
-                          style: CustomTextStyles.titleLargeGray50001_1,
+                          text: " Paid ",
+                          style: CustomTextStyles.titleMediumTealA7000116,
                         ),
                       ],
                     ),
                     textAlign: TextAlign.left,
                   ),
-                  SizedBox(height: 20.v),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ),
+                SizedBox(height: 29.v),
+                RichText(
+                  text: TextSpan(
                     children: [
-                      Text(
-                        "Transfer fee",
+                      TextSpan(
+                        text: "300.00",
+                        style: CustomTextStyles.displaySmall34,
+                      ),
+                      TextSpan(
+                        text: "INR",
+                        style: CustomTextStyles.titleLargeGray50001_1,
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 20.v),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Transfer fee",
+                      style: CustomTextStyles.titleMediumPink200,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "0.00",
+                            style: theme.textTheme.titleMedium,
+                          ),
+                          TextSpan(
+                            text: "INR",
+                            style: CustomTextStyles.labelSmall_1,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 18.v),
+                Divider(),
+                SizedBox(height: 17.v),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 1.v),
+                      child: Text(
+                        "Due Date",
                         style: CustomTextStyles.titleMediumPink200,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "0.00",
-                              style: theme.textTheme.titleMedium,
-                            ),
-                            TextSpan(
-                              text: "INR",
-                              style: CustomTextStyles.labelSmall_1,
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 18.v),
-                  Divider(),
-                  SizedBox(height: 17.v),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 1.v),
-                        child: Text(
-                          "Due Date",
-                          style: CustomTextStyles.titleMediumPink200,
-                        ),
-                      ),
-                      Text(
-                        "March 21,2021",
-                        style: CustomTextStyles.titleMedium_1,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 7.v),
-                ],
-              ),
+                    ),
+                    Text(
+                      "March 21,2021",
+                      style: CustomTextStyles.titleMedium_1,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 7.v),
+              ],
             ),
           ),
-          CustomImageView(
-            imagePath: ImageConstant.imgSpotify1,
-            height: 75.adaptSize,
-            width: 75.adaptSize,
-            alignment: Alignment.topCenter,
-          ),
-        ],
-      ),
-    );
-  }
+        ),
+        CustomImageView(
+          imagePath: ImageConstant.imgSpotify1,
+          height: 75.adaptSize,
+          width: 75.adaptSize,
+          alignment: Alignment.topCenter,
+        ),
+      ],
+    ),
+  );
+}

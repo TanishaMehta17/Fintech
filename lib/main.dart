@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'tanisha_s_application14',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.loginScreen,
+      initialRoute: AppRoutes.loanDetailsTabContainerScreen,
       routes: AppRoutes.routes,
     );
   }

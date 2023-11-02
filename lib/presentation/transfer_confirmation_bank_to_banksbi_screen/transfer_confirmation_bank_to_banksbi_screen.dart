@@ -10,7 +10,10 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class TransferConfirmationBankToBanksbiScreen extends StatelessWidget {
-  TransferConfirmationBankToBanksbiScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  TransferConfirmationBankToBanksbiScreen(this.name, this.accNo, this.amt,
+      {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -77,11 +80,11 @@ class TransferConfirmationBankToBanksbiScreen extends StatelessWidget {
                                       Padding(
                                           padding: EdgeInsets.only(
                                               left: 84.h, top: 17.v),
-                                          child: Text("David John",
+                                          child: Text("$name",
                                               style: theme
                                                   .textTheme.headlineMedium)),
                                       SizedBox(height: 6.v),
-                                      Text("2******6125",
+                                      Text("$accNo",
                                           style:
                                               CustomTextStyles.titleMedium16_1),
                                       CustomTextFormField(
@@ -108,7 +111,7 @@ class TransferConfirmationBankToBanksbiScreen extends StatelessWidget {
                                           child: RichText(
                                               text: TextSpan(children: [
                                                 TextSpan(
-                                                    text: "250.00",
+                                                    text: "$amt",
                                                     style: CustomTextStyles
                                                         .displaySmallRegular_1),
                                                 TextSpan(
