@@ -810,3 +810,4 @@ def person_to_person():
         return jsonify({'message': 'token is expired'}), 401
     except jwt.InvalidTokenError:
         return jsonify({'message': 'Invalid token'}), 401
+    app.run(port=5000)
