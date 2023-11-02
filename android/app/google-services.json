@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "132692416727",
+    "project_id": "fintech-2bc29",
+    "storage_bucket": "fintech-2bc29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132692416727:android:7a6b81cc8a0d2241e2b892",
+        "android_client_info": {
+          "package_name": "com.tanishasapplication.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrOlMNru_BFRjzfnG_C40IRyD2fPXaz8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
