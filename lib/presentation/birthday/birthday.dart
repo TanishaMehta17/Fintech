@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/marriage_gift_confirmation_successful_transfer_screen/marriage_gift_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -11,6 +12,7 @@ import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart'
 
 // ignore_for_file: must_be_immutable
 class MarrigeGiftCardePasswordScreen extends StatelessWidget {
+  var name, accNo, amt;
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -35,12 +37,20 @@ class MarrigeGiftCardePasswordScreen extends StatelessWidget {
       );
     } else {
       // All OTP fields are filled, navigate to the next screen.
-      Navigator.pushNamed(
-          context, AppRoutes.marriageGiftConfirmationSuccessfulTransferScreen);
+      // Navigator.pushNamed(
+      //     context, AppRoutes.marriageGiftConfirmationSuccessfulTransferScreen);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                MarriageGiftConfirmationSuccessfulTransferScreen(
+                    name, accNo, amt)),
+      );
     }
   }
 
-  MarrigeGiftCardePasswordScreen({Key? key}) : super(key: key);
+  MarrigeGiftCardePasswordScreen(this.name, this.accNo, this.amt, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -442,8 +452,4 @@ class MarrigeGiftCardePasswordScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the marriageGiftConfirmationSuccessfulTransferScreen.
-  onTapConfirm(BuildContext context) {
-    Navigator.pushNamed(context,
-        AppRoutes.birthdayGiftGiftCardConfirmationSuccessfulTransferScreen);
-  }
 }

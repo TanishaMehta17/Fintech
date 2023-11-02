@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/eid_transfer_confirmation_screen/eid_transfer_confirmation_screen.dart';
+
 import '../eid_gift_cards_screen/widgets/chipviewgroupfi_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -454,7 +456,17 @@ class _EidGiftCardsScreenState extends State<EidGiftCardsScreen> {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the eidTransferConfirmationScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.eidTransferConfirmationScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.eidTransferConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => EidTransferConfirmationScreen(
+              nameController.text.toString(),
+              accountnumberController.text.toString(),
+              amountController.text.toString())),
+    );
   }
 }

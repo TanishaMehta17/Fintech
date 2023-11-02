@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/marrige_transfer_confirmation_one_screen/marrige_transfer_confirmation_one_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -9,7 +10,9 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class MarrigeTransferConfirmationScreen extends StatelessWidget {
-  MarrigeTransferConfirmationScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  MarrigeTransferConfirmationScreen(this.name, this.accNo, this.amt, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -66,11 +69,11 @@ class MarrigeTransferConfirmationScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Jonathan",
+                                      Text("$name",
                                           style: CustomTextStyles
                                               .titleLargeBluegray900_1),
                                       SizedBox(height: 3.v),
-                                      Text("1******6103",
+                                      Text("$accNo",
                                           style: CustomTextStyles
                                               .titleMediumPink20016_1)
                                     ]))
@@ -144,7 +147,7 @@ class MarrigeTransferConfirmationScreen extends StatelessWidget {
                                           RichText(
                                               text: TextSpan(children: [
                                                 TextSpan(
-                                                    text: "150.00",
+                                                    text: "$amt",
                                                     style: CustomTextStyles
                                                         .titleLargeBluegray900_2),
                                                 TextSpan(
@@ -206,7 +209,7 @@ class MarrigeTransferConfirmationScreen extends StatelessWidget {
                                           RichText(
                                               text: TextSpan(children: [
                                                 TextSpan(
-                                                    text: "150.00",
+                                                    text: "$amt",
                                                     style: CustomTextStyles
                                                         .titleLargeBluegray900_2),
                                                 TextSpan(
@@ -243,8 +246,16 @@ class MarrigeTransferConfirmationScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the marrigeTransferConfirmationOneScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.marrigeTransferConfirmationOneScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.marrigeTransferConfirmationOneScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              MarrigeTransferConfirmationOneScreen(name, accNo, amt)),
+    );
   }
 }

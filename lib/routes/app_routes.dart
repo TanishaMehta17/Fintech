@@ -699,11 +699,11 @@ class AppRoutes {
     jioConfirmationSuccessfulTransferScreen: (context) =>
         JioConfirmationSuccessfulTransferScreen(),
     homeLoanDetailPageInformationScreen: (context) =>
-        HomeLoanDetailPageInformationScreen(),
+        HomeLoanDetailPageInformationScreen(int),
     homeLoanPaymentDoneScreen: (context) => HomeLoanPaymentDoneScreen(),
     jioMobileRechargeScreen: (context) => JioMobileRechargeScreen(),
     mainRechargeScreen: (context) => MainRechargeScreen(),
-    loanPaymentScreen: (context) => LoanPaymentScreen(),
+    loanPaymentScreen: (context) => LoanPaymentScreen(int),
     mainLoanGraphScreen: (context) => MainLoanGraphScreen(),
     neftBanksDetailsScreen: (context) => NeftBanksDetailsScreen(),
     fdPaymentScreen: (context) => FdPaymentScreen(),
@@ -847,23 +847,24 @@ class AppRoutes {
         EidGiftSuccessfulTransferReciptScreen(),
     eidGiftCardsScreen: (context) => EidGiftCardsScreen(),
     eidGiftCardTransferConfirmationScreen: (context) =>
-        EidGiftCardTransferConfirmationScreen(),
+        EidGiftCardTransferConfirmationScreen(String, String, int),
     eidPasswordForTransfareConformationScreen: (context) =>
-        EidPasswordForTransfareConformationScreen(),
+        EidPasswordForTransfareConformationScreen(String, String, int),
     eidGiftConfirmationSuccessfulTransferScreen: (context) =>
-        EidGiftConfirmationSuccessfulTransferScreen(),
-    eidTransferConfirmationScreen: (context) => EidTransferConfirmationScreen(),
+        EidGiftConfirmationSuccessfulTransferScreen(String, String, int),
+    eidTransferConfirmationScreen: (context) =>
+        EidTransferConfirmationScreen(String, String, int),
     personToPersonConfirmationSuccessfulTransferScreen: (context) =>
         PersonToPersonConfirmationSuccessfulTransferScreen(String, String, int),
     personToPersonConfirmationSuccessfulTransferReciptScreen: (context) =>
         PersonToPersonConfirmationSuccessfulTransferReciptScreen(),
     giftCardsScreen: (context) => GiftCardsScreen(),
     marrigeTransferConfirmationOneScreen: (context) =>
-        MarrigeTransferConfirmationOneScreen(),
+        MarrigeTransferConfirmationOneScreen(String, String, int),
     marrigeGiftCardePasswordScreen: (context) =>
         MarrigeGiftCardePasswordScreen(),
     marriageGiftConfirmationSuccessfulTransferScreen: (context) =>
-        MarriageGiftConfirmationSuccessfulTransferScreen(),
+        MarriageGiftConfirmationSuccessfulTransferScreen(String, String, int),
     marrigeGiftCardReciptScreen: (context) => MarrigeGiftCardReciptScreen(),
     healthConfirmationSuccessfulTransferScreen: (context) =>
         HealthConfirmationSuccessfulTransferScreen(),
@@ -875,7 +876,7 @@ class AppRoutes {
     healthInsurancePlansScreen: (context) => HealthInsurancePlansScreen(),
     healthConfirmationScreen: (context) => HealthConfirmationScreen(),
     marrigeTransferConfirmationScreen: (context) =>
-        MarrigeTransferConfirmationScreen(),
+        MarrigeTransferConfirmationScreen(String, String, int),
     familyTransferConfirmationInsuranceScreen: (context) =>
         FamilyTransferConfirmationInsuranceScreen(),
     familyInsuranceScreen: (context) => FamilyInsuranceScreen(),
