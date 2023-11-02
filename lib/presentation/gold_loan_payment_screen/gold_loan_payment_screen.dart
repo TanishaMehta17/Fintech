@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/gold_loan_password_payment_screen/gold_loan_password_payment_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,8 @@ import 'package:tanisha_s_application14/widgets/custom_switch.dart';
 
 // ignore_for_file: must_be_immutable
 class GoldLoanPaymentScreen extends StatelessWidget {
-  GoldLoanPaymentScreen({Key? key}) : super(key: key);
+  var amt;
+  GoldLoanPaymentScreen(this.amt, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -69,7 +71,7 @@ class GoldLoanPaymentScreen extends StatelessWidget {
                                       RichText(
                                           text: TextSpan(children: [
                                             TextSpan(
-                                                text: "12,5800.00",
+                                                text: "$amt",
                                                 style: CustomTextStyles
                                                     .titleLargeBluegray900_2),
                                             TextSpan(
@@ -231,6 +233,10 @@ class GoldLoanPaymentScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the goldLoanPasswordPaymentScreen.
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.goldLoanPasswordPaymentScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => GoldLoanPasswordPaymentScreen(amt)),
+    );
   }
 }

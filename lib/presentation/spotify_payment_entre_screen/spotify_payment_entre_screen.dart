@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/spotify_confirmation_successful_transfer_screen/spotify_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -14,6 +15,10 @@ import 'dart:convert';
 
 // ignore_for_file: must_be_immutable
 class SpotifyPaymentEntreScreen extends StatelessWidget {
+  var acc;
+  SpotifyPaymentEntreScreen(this.acc, {Key? key}) : super(key: key);
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -22,9 +27,32 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  SpotifyPaymentEntreScreen({Key? key}) : super(key: key);
+  void onTapVerifyotp(BuildContext context) {
+    if (number_controller.text.isEmpty ||
+        number_controller1.text.isEmpty ||
+        number_controller2.text.isEmpty ||
+        number_controller3.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'All OTP fields must be filled',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      // All OTP fields are filled, navigate to the next screen.
+      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
 
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                SpotifyConfirmationSuccessfulTransferScreen(acc)),
+      );
+    }
+  }
 
   TextEditingController group6763Controller = TextEditingController();
 
@@ -107,7 +135,7 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
                                     Text("Spotify",
                                         style: theme.textTheme.headlineMedium),
                                     SizedBox(height: 6.v),
-                                    Text("2******6125",
+                                    Text("$acc",
                                         style:
                                             CustomTextStyles.titleMedium16_1),
                                     SizedBox(height: 19.v),
@@ -143,7 +171,7 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
                                     RichText(
                                         text: TextSpan(children: [
                                           TextSpan(
-                                              text: "10.00",
+                                              text: "300.00",
                                               style:
                                                   theme.textTheme.displaySmall),
                                           TextSpan(
@@ -274,8 +302,7 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
                             text: 'Confirm',
                             width: 350,
                             onTap: () {
-                              // onTapPaynow(context);
-                              onTapConfirm(context);
+                              onTapVerifyotp(context);
                             },
                           ),
                         )
@@ -300,7 +327,7 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the spotifyConfirmationSuccessfulTransferScreen.
-Future<void> onTapConfirm(BuildContext context) async {
+  Future<void> onTapConfirm(BuildContext context) async {
     String dig1 = number_controller.text;
     String dig2 = number_controller1.text;
     String dig3 = number_controller2.text;

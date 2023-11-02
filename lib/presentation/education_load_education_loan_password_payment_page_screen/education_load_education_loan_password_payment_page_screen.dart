@@ -13,6 +13,12 @@ import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart'
 // ignore_for_file: must_be_immutable
 class EducationLoadEducationLoanPasswordPaymentPageScreen
     extends StatelessWidget {
+  var amt;
+  EducationLoadEducationLoanPasswordPaymentPageScreen(this.amt, {Key? key})
+      : super(key: key);
+
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -41,10 +47,10 @@ class EducationLoadEducationLoanPasswordPaymentPageScreen
     }
   }
 
-  EducationLoadEducationLoanPasswordPaymentPageScreen({Key? key})
-      : super(key: key);
+  // EducationLoadEducationLoanPasswordPaymentPageScreen({Key? key})
+  //     : super(key: key);
 
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  // GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +149,7 @@ class EducationLoadEducationLoanPasswordPaymentPageScreen
                                                                     children: [
                                                                       TextSpan(
                                                                           text:
-                                                                              "12,5800.00",
+                                                                              "$amt",
                                                                           style:
                                                                               CustomTextStyles.titleLargeBluegray900_2),
                                                                       TextSpan(

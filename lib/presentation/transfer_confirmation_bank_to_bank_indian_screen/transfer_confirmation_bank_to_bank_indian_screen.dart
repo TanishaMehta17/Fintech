@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/bank_to_bank_confirmation_successful_transfer_indian_screen/bank_to_bank_confirmation_successful_transfer_indian_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,10 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class TransferConfirmationBankToBankIndianScreen extends StatelessWidget {
-  TransferConfirmationBankToBankIndianScreen({Key? key}) : super(key: key);
+  var name, accNo, amt;
+  TransferConfirmationBankToBankIndianScreen(this.name, this.accNo, this.amt,
+      {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -77,11 +81,11 @@ class TransferConfirmationBankToBankIndianScreen extends StatelessWidget {
                                       Padding(
                                           padding: EdgeInsets.only(
                                               left: 84.h, top: 17.v),
-                                          child: Text("David John",
+                                          child: Text("$name",
                                               style: theme
                                                   .textTheme.headlineMedium)),
                                       SizedBox(height: 6.v),
-                                      Text("2******6125",
+                                      Text("$accNo",
                                           style:
                                               CustomTextStyles.titleMedium16_1),
                                       CustomTextFormField(
@@ -108,7 +112,7 @@ class TransferConfirmationBankToBankIndianScreen extends StatelessWidget {
                                           child: RichText(
                                               text: TextSpan(children: [
                                                 TextSpan(
-                                                    text: "250.00",
+                                                    text: "$amt",
                                                     style: CustomTextStyles
                                                         .displaySmallRegular_1),
                                                 TextSpan(
@@ -191,8 +195,17 @@ class TransferConfirmationBankToBankIndianScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the bankToBankConfirmationSuccessfulTransferIndianScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(context,
+  //       AppRoutes.bankToBankConfirmationSuccessfulTransferIndianScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(context,
-        AppRoutes.bankToBankConfirmationSuccessfulTransferIndianScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              BankToBankConfirmationSuccessfulTransferIndianScreen(
+                  name, accNo, amt)),
+    );
   }
 }

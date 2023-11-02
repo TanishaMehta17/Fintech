@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/netflix_confirmation_successful_transfer_screen/netflix_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,8 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class NetfiixPaymentAmountScreen extends StatelessWidget {
-  NetfiixPaymentAmountScreen({Key? key}) : super(key: key);
+  var accNo;
+  NetfiixPaymentAmountScreen(this.accNo, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -88,31 +90,61 @@ class NetfiixPaymentAmountScreen extends StatelessWidget {
                                       SizedBox(height: 1.v),
                                       Align(
                                           alignment: Alignment.center,
-                                          child: Text("2******6125",
+                                          child: Text("$accNo",
                                               style: CustomTextStyles
                                                   .titleMedium16_1)),
-                                      CustomTextFormField(
-                                          controller: group6763Controller,
-                                          margin: EdgeInsets.only(
-                                              left: 22.h,
-                                              top: 13.v,
-                                              right: 22.h),
-                                          hintText:
-                                              "Transactions Status: Unpaid",
-                                          hintStyle: CustomTextStyles
-                                              .titleMediumPrimary16_1,
-                                          textInputAction: TextInputAction.done,
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 26.h, vertical: 9.v),
-                                          borderDecoration:
-                                              TextFormFieldStyleHelper
-                                                  .outlineBlack,
-                                          fillColor: Colors.red[100]),
+                                      // CustomTextFormField(
+                                      //     controller: group6763Controller,
+                                      //     margin: EdgeInsets.only(
+                                      //         left: 22.h,
+                                      //         top: 13.v,
+                                      //         right: 22.h),
+                                      //     hintText:
+                                      //         "Transactions Status: Unpaid",
+                                      //     hintStyle: CustomTextStyles
+                                      //         .titleMediumPrimary16_1,
+                                      //     textInputAction: TextInputAction.done,
+                                      //     contentPadding: EdgeInsets.symmetric(
+                                      //         horizontal: 26.h, vertical: 9.v),
+                                      //     borderDecoration:
+                                      //         TextFormFieldStyleHelper
+                                      //             .outlineBlack,
+                                      //     fillColor: Colors.red[100]),
+                                      Container(
+                                        width: 249.h,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 24.h,
+                                          vertical: 9.v,
+                                        ),
+                                        decoration: AppDecoration
+                                            .outlineBluegray500112
+                                            .copyWith(
+                                          borderRadius:
+                                              BorderRadiusStyle.roundedBorder10,
+                                        ),
+                                        child: RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: "Transactions Status:",
+                                                style: CustomTextStyles
+                                                    .titleMediumTealA7000116,
+                                              ),
+                                              TextSpan(
+                                                text: " Unpaid ",
+                                                style: CustomTextStyles
+                                                    .titleMediumTealA7000116,
+                                              ),
+                                            ],
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
                                       SizedBox(height: 16.v),
                                       RichText(
                                           text: TextSpan(children: [
                                             TextSpan(
-                                                text: "1.00",
+                                                text: "500.00",
                                                 style: CustomTextStyles
                                                     .displaySmallRegular_1),
                                             TextSpan(
@@ -186,7 +218,13 @@ class NetfiixPaymentAmountScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the netflixConfirmationSuccessfulTransferScreen.
+  //
   onTapPaynow(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.netflixScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              NetflixConfirmationSuccessfulTransferScreen(accNo)),
+    );
   }
 }

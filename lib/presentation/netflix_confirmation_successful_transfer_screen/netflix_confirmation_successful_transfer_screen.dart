@@ -9,7 +9,9 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class NetflixConfirmationSuccessfulTransferScreen extends StatelessWidget {
-  NetflixConfirmationSuccessfulTransferScreen({Key? key}) : super(key: key);
+  var accNo;
+  NetflixConfirmationSuccessfulTransferScreen(this.accNo, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -61,24 +63,27 @@ class NetflixConfirmationSuccessfulTransferScreen extends StatelessWidget {
                         text: "View Receipt",
                         margin: EdgeInsets.fromLTRB(26.h, 72.v, 25.h, 2.v),
                         onTap: () {
-                         // onTapview(context);
+                          // onTapview(context);
 
-                         showModalBottomSheet(context: context, builder: (BuildContext context){
-                          return SizedBox(
-                                width: double.maxFinite,
-          child: Column(
-            children: [
-              Spacer(),
-              CustomImageView(
-                imagePath: ImageConstant.imgNetflix1,
-                height: 75.adaptSize,
-                width: 75.adaptSize,
-              ),
-              _buildNetflixConfirmationFrame(context),
-            ],
-          ),
-                          );
-                         });
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                  width: double.maxFinite,
+                                  child: Column(
+                                    children: [
+                                      Spacer(),
+                                      CustomImageView(
+                                        imagePath: ImageConstant.imgNetflix1,
+                                        height: 75.adaptSize,
+                                        width: 75.adaptSize,
+                                      ),
+                                      _buildNetflixConfirmationFrame(
+                                          context, accNo),
+                                    ],
+                                  ),
+                                );
+                              });
                         },
                       )
                     ])),
@@ -99,136 +104,137 @@ class NetflixConfirmationSuccessfulTransferScreen extends StatelessWidget {
         context, AppRoutes.netflixConfirmationSuccessfulTransferOneScreen);
   }
 }
+
 /// Section Widget
-  Widget _buildNetflixConfirmationFrame(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 29.h,
-        vertical: 53.v,
-      ),
-      decoration: AppDecoration.fillWhiteA.copyWith(
-        borderRadius: BorderRadiusStyle.customBorderTL20,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          SizedBox(height: 7.v),
-          Padding(
-            padding: EdgeInsets.only(left: 143.h),
-            child: Text(
-              "Netflix",
-              style: theme.textTheme.headlineMedium,
-            ),
+Widget _buildNetflixConfirmationFrame(BuildContext context, accNo) {
+  return Container(
+    padding: EdgeInsets.symmetric(
+      horizontal: 29.h,
+      vertical: 53.v,
+    ),
+    decoration: AppDecoration.fillWhiteA.copyWith(
+      borderRadius: BorderRadiusStyle.customBorderTL20,
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        SizedBox(height: 7.v),
+        Padding(
+          padding: EdgeInsets.only(left: 143.h),
+          child: Text(
+            "Netflix",
+            style: theme.textTheme.headlineMedium,
           ),
-          SizedBox(height: 6.v),
-          Padding(
-            padding: EdgeInsets.only(left: 142.h),
-            child: Text(
-              "2******6125",
-              style: CustomTextStyles.titleMediumGray5000116,
-            ),
+        ),
+        SizedBox(height: 6.v),
+        Padding(
+          padding: EdgeInsets.only(left: 142.h),
+          child: Text(
+            "$accNo",
+            style: CustomTextStyles.titleMediumGray5000116,
           ),
-          SizedBox(height: 9.v),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              width: 249.h,
-              padding: EdgeInsets.symmetric(
-                horizontal: 30.h,
-                vertical: 9.v,
-              ),
-              decoration: AppDecoration.outlineBlack.copyWith(
-                borderRadius: BorderRadiusStyle.roundedBorder10,
-              ),
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Transactions Status:",
-                      style: CustomTextStyles.titleMediumTealA7000116_1,
-                    ),
-                    TextSpan(
-                      text: " Paid ",
-                      style: CustomTextStyles.titleMediumTealA7000116_1,
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.left,
-              ),
+        ),
+        SizedBox(height: 9.v),
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            width: 249.h,
+            padding: EdgeInsets.symmetric(
+              horizontal: 30.h,
+              vertical: 9.v,
             ),
-          ),
-          SizedBox(height: 30.v),
-          Padding(
-            padding: EdgeInsets.only(left: 121.h),
+            decoration: AppDecoration.outlineBlack.copyWith(
+              borderRadius: BorderRadiusStyle.roundedBorder10,
+            ),
             child: RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "1.00",
-                    style: CustomTextStyles.displaySmallRegular,
+                    text: "Transactions Status:",
+                    style: CustomTextStyles.titleMediumTealA7000116_1,
                   ),
                   TextSpan(
-                    text: "INR",
-                    style: CustomTextStyles.titleLargePink200,
+                    text: " Paid ",
+                    style: CustomTextStyles.titleMediumTealA7000116_1,
                   ),
                 ],
               ),
               textAlign: TextAlign.left,
             ),
           ),
-          SizedBox(height: 17.v),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 1.v),
-                child: Text(
-                  "Transfer fee",
-                  style: CustomTextStyles.titleMediumGray50001,
-                ),
-              ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "0.00",
-                      style: CustomTextStyles.titleLargeBluegray900_2,
-                    ),
-                    TextSpan(
-                      text: "INR",
-                      style: CustomTextStyles.titleLargeBluegray900_2,
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ],
-          ),
-          SizedBox(height: 17.v),
-          Divider(),
-          SizedBox(height: 18.v),
-          Padding(
-            padding: EdgeInsets.only(right: 29.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        ),
+        SizedBox(height: 30.v),
+        Padding(
+          padding: EdgeInsets.only(left: 121.h),
+          child: RichText(
+            text: TextSpan(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 1.v),
-                  child: Text(
-                    "Due Date",
-                    style: CustomTextStyles.titleMediumGray50001,
-                  ),
+                TextSpan(
+                  text: "500.00",
+                  style: CustomTextStyles.displaySmallRegular,
                 ),
-                Text(
-                  "March 21,2021",
-                  style: CustomTextStyles.titleMedium_1,
+                TextSpan(
+                  text: "INR",
+                  style: CustomTextStyles.titleLargePink200,
                 ),
               ],
             ),
+            textAlign: TextAlign.left,
           ),
-        ],
-      ),
-    );
-  }
+        ),
+        SizedBox(height: 17.v),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 1.v),
+              child: Text(
+                "Transfer fee",
+                style: CustomTextStyles.titleMediumGray50001,
+              ),
+            ),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: "0.00",
+                    style: CustomTextStyles.titleLargeBluegray900_2,
+                  ),
+                  TextSpan(
+                    text: "INR",
+                    style: CustomTextStyles.titleLargeBluegray900_2,
+                  ),
+                ],
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ],
+        ),
+        SizedBox(height: 17.v),
+        Divider(),
+        SizedBox(height: 18.v),
+        Padding(
+          padding: EdgeInsets.only(right: 29.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 1.v),
+                child: Text(
+                  "Due Date",
+                  style: CustomTextStyles.titleMediumGray50001,
+                ),
+              ),
+              Text(
+                "March 21,2021",
+                style: CustomTextStyles.titleMedium_1,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
