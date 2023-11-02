@@ -9,7 +9,8 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class DisneyHostarconfirmationSuccessfulTransferScreen extends StatelessWidget {
-  DisneyHostarconfirmationSuccessfulTransferScreen({Key? key})
+  var acc;
+  DisneyHostarconfirmationSuccessfulTransferScreen(this.acc, {Key? key})
       : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -62,19 +63,21 @@ class DisneyHostarconfirmationSuccessfulTransferScreen extends StatelessWidget {
                           text: "View Receipt",
                           margin: EdgeInsets.fromLTRB(29.h, 72.v, 25.h, 3.v),
                           onTap: () {
-                           // onTapViewreceipt(context);
-                           showModalBottomSheet(context: context, builder: (BuildContext context){
-                            return SizedBox(
-                               width: double.maxFinite,
-          child: Column(
-            children: [
-              Spacer(),
-              _buildDisneyHotstarConfirmation(context),
-            ],
-          ),
-                            );
-                           });
-
+                            // onTapViewreceipt(context);
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    width: double.maxFinite,
+                                    child: Column(
+                                      children: [
+                                        Spacer(),
+                                        _buildDisneyHotstarConfirmation(
+                                            context, acc),
+                                      ],
+                                    ),
+                                  );
+                                });
                           })
                     ])),
             bottomNavigationBar:
@@ -99,137 +102,137 @@ class DisneyHostarconfirmationSuccessfulTransferScreen extends StatelessWidget {
         AppRoutes.disneyHostarconfirmationSuccessfulTransferReciPtScreen);
   }
 }
-Widget _buildDisneyHotstarConfirmation(BuildContext context) {
-    return SizedBox(
-      height: 429.v,
-      width: 427.h,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 29.h,
-                vertical: 54.v,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadiusStyle.customBorderTL20,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 3.v),
-                  Text(
-                    "Disney + Hotstar",
-                    style: theme.textTheme.headlineMedium,
+
+Widget _buildDisneyHotstarConfirmation(BuildContext context, acc) {
+  return SizedBox(
+    height: 429.v,
+    width: 427.h,
+    child: Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 29.h,
+              vertical: 54.v,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadiusStyle.customBorderTL20,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 3.v),
+                Text(
+                  "Disney + Hotstar",
+                  style: theme.textTheme.headlineMedium,
+                ),
+                SizedBox(height: 6.v),
+                Text(
+                  "$acc",
+                  style: CustomTextStyles.titleMedium16_1,
+                ),
+                SizedBox(height: 13.v),
+                Container(
+                  width: 249.h,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.h,
+                    vertical: 9.v,
                   ),
-                  SizedBox(height: 6.v),
-                  Text(
-                    "2******6125",
-                    style: CustomTextStyles.titleMedium16_1,
+                  decoration: AppDecoration.outlineBluegray500112.copyWith(
+                    borderRadius: BorderRadiusStyle.roundedBorder10,
                   ),
-                  SizedBox(height: 13.v),
-                  Container(
-                    width: 249.h,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 24.h,
-                      vertical: 9.v,
-                    ),
-                    decoration: AppDecoration.outlineBluegray500112.copyWith(
-                      borderRadius: BorderRadiusStyle.roundedBorder10,
-                    ),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Transactions Status:",
-                            style: CustomTextStyles.titleMediumTealA7000116_1,
-                          ),
-                          TextSpan(
-                            text: " Paid ",
-                            style: CustomTextStyles.titleMediumTealA7000116_1,
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  SizedBox(height: 29.v),
-                  RichText(
+                  child: RichText(
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "3.50",
-                          style: CustomTextStyles.displaySmall34,
+                          text: "Transactions Status:",
+                          style: CustomTextStyles.titleMediumTealA7000116_1,
                         ),
                         TextSpan(
-                          text: "INR",
-                          style: CustomTextStyles.titleLargePink200
+                          text: " Paid ",
+                          style: CustomTextStyles.titleMediumTealA7000116_1,
                         ),
                       ],
                     ),
                     textAlign: TextAlign.left,
                   ),
-                  SizedBox(height: 20.v),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ),
+                SizedBox(height: 29.v),
+                RichText(
+                  text: TextSpan(
                     children: [
-                      Text(
-                        "Transfer fee",
+                      TextSpan(
+                        text: "700.00",
+                        style: CustomTextStyles.displaySmall34,
+                      ),
+                      TextSpan(
+                          text: "INR",
+                          style: CustomTextStyles.titleLargePink200),
+                    ],
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 20.v),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Transfer fee",
+                      style: CustomTextStyles.titleMediumPink200,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "0.00",
+                            style: theme.textTheme.titleMedium,
+                          ),
+                          TextSpan(
+                            text: "INR",
+                            style: CustomTextStyles.labelSmall_1,
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 18.v),
+                Divider(),
+                SizedBox(height: 17.v),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 1.v),
+                      child: Text(
+                        "Due Date",
                         style: CustomTextStyles.titleMediumPink200,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "0.00",
-                              style: theme.textTheme.titleMedium,
-                            ),
-                            TextSpan(
-                              text: "INR",
-                              style: CustomTextStyles.labelSmall_1,
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 18.v),
-                  Divider(),
-                  SizedBox(height: 17.v),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 1.v),
-                        child: Text(
-                          "Due Date",
-                          style: CustomTextStyles.titleMediumPink200,
-                        ),
-                      ),
-                      Text(
-                        "March 21,2021",
-                        style: CustomTextStyles.titleMedium_1,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                    Text(
+                      "March 21,2021",
+                      style: CustomTextStyles.titleMedium_1,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          CustomImageView(
-            imagePath: ImageConstant.imgDownload1,
-            height: 75.adaptSize,
-            width: 75.adaptSize,
-            radius: BorderRadius.circular(
-              10.h,
-            ),
-            alignment: Alignment.topCenter,
+        ),
+        CustomImageView(
+          imagePath: ImageConstant.imgDownload1,
+          height: 75.adaptSize,
+          width: 75.adaptSize,
+          radius: BorderRadius.circular(
+            10.h,
           ),
-        ],
-      ),
-    );
-  }
+          alignment: Alignment.topCenter,
+        ),
+      ],
+    ),
+  );
+}

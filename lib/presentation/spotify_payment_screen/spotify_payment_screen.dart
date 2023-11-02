@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/spotify_payment_one_screen/spotify_payment_one_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -137,7 +138,7 @@ class SpotifyPaymentScreen extends StatelessWidget {
                                                               children: [
                                                                 TextSpan(
                                                                     text:
-                                                                        "10.00",
+                                                                        "300.00",
                                                                     style: CustomTextStyles
                                                                         .titleLargeBluegray900_2),
                                                                 TextSpan(
@@ -416,7 +417,15 @@ class SpotifyPaymentScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the spotifyPaymentOneScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.spotifyPaymentOneScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.spotifyPaymentOneScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              SpotifyPaymentOneScreen(cardNumberController.text.toString())),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/family_confirmation_successful_transfer_screen/family_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,9 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class FamilyTransferConfirmationInsuranceScreen extends StatelessWidget {
-  FamilyTransferConfirmationInsuranceScreen({Key? key}) : super(key: key);
+  var acc;
+  FamilyTransferConfirmationInsuranceScreen(this.acc, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -74,7 +77,7 @@ class FamilyTransferConfirmationInsuranceScreen extends StatelessWidget {
                                 child: Text("Family Insurance",
                                     style: theme.textTheme.headlineMedium)),
                             SizedBox(height: 4.v),
-                            Text("1******2135",
+                            Text("$acc",
                                 style: CustomTextStyles.titleMedium16_1),
                             CustomTextFormField(
                                 controller: group6763Controller,
@@ -171,8 +174,16 @@ class FamilyTransferConfirmationInsuranceScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the familyConfirmationSuccessfulTransferScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.familyConfirmationSuccessfulTransferScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.familyConfirmationSuccessfulTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              FamilyConfirmationSuccessfulTransferScreen(acc)),
+    );
   }
 }

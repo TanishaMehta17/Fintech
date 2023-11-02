@@ -1,3 +1,7 @@
+import 'package:tanisha_s_application14/presentation/airtel_recharge_confirmation_screen/airtel_recharge_confirmation_screen.dart';
+import 'package:tanisha_s_application14/presentation/jio_recharge_confirmation_screen/jio_recharge_confirmation_screen.dart';
+import 'package:tanisha_s_application14/presentation/vi_recharge_confirmation_screen/vi_recharge_confirmation_screen.dart';
+
 import '../main_recharge_screen/widgets/chipviewgrouptw_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -16,6 +20,7 @@ class MainRechargeScreen extends StatelessWidget {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -217,10 +222,16 @@ class MainRechargeScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                        padding: EdgeInsets.only(bottom: 1.v),
-                                        child: Text("250.00",
-                                            style: CustomTextStyles
-                                                .headlineMediumPrimary28)),
+                                      padding: EdgeInsets.only(bottom: 1.v),
+                                      // child: Text("250.00",
+                                      //     style: CustomTextStyles
+                                      //         .headlineMediumPrimary28)
+                                      child: CustomTextFormField(
+                                        controller: amountController,
+                                        textStyle: CustomTextStyles
+                                            .headlineMediumPrimary28,
+                                      ),
+                                    ),
                                     Padding(
                                         padding: EdgeInsets.only(right: 2.h),
                                         child: SizedBox(
@@ -371,15 +382,33 @@ class MainRechargeScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the jioRechargeConfirmationScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.jioRechargeConfirmationScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.jioRechargeConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              JioRechargeConfirmationScreen(amountController.text.toString())),
+    );
   }
 
   onTapVI(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.viRechargeConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              ViRechargeConfirmationScreen(amountController.text.toString())),
+    );
   }
 
   onTapAirtel(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.airtelRechargeConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => AirtelRechargeConfirmationScreen(
+              amountController.text.toString())),
+    );
   }
 }

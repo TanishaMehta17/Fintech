@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/health_confirmation_screen/health_confirmation_screen.dart';
+
 import '../health_insurance_info_screen/widgets/chipviewquarter_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
@@ -488,7 +490,15 @@ class HealthInsuranceInfoScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the healthConfirmationScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.healthConfirmationScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.healthConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              HealthConfirmationScreen(cardNumberController.text.toString())),
+    );
   }
 }

@@ -10,7 +10,10 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 // ignore_for_file: must_be_immutable
 class BankToBankConfirmationSuccessfulTransferIndianScreen
     extends StatelessWidget {
-  BankToBankConfirmationSuccessfulTransferIndianScreen({Key? key})
+  var name, accNo, amt;
+  BankToBankConfirmationSuccessfulTransferIndianScreen(
+      this.name, this.accNo, this.amt,
+      {Key? key})
       : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();

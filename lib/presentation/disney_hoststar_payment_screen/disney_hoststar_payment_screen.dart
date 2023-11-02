@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/payment_of_disney_hotstar_screen/payment_of_disney_hotstar_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -10,7 +11,8 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class DisneyHoststarPaymentScreen extends StatelessWidget {
-  DisneyHoststarPaymentScreen({Key? key}) : super(key: key);
+  var acc;
+  DisneyHoststarPaymentScreen(this.acc, {Key? key}) : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -74,26 +76,41 @@ class DisneyHoststarPaymentScreen extends StatelessWidget {
                             Text("Disney + Hotstar",
                                 style: theme.textTheme.headlineMedium),
                             SizedBox(height: 7.v),
-                            Text("2******6125",
+                            Text("$acc",
                                 style: CustomTextStyles.titleMedium16_1),
-                            CustomTextFormField(
-                                controller: group6763Controller,
-                                margin: EdgeInsets.only(
-                                    left: 22.h, top: 24.v, right: 22.h),
-                                hintText: "Transactions Status: Unpaid",
-                                hintStyle:
-                                    CustomTextStyles.titleMediumPrimary16_1,
-                                textInputAction: TextInputAction.done,
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 14.h, vertical: 9.v),
-                                borderDecoration: TextFormFieldStyleHelper
-                                    .outlineBlueGrayTL10,
-                                fillColor: theme.colorScheme.primary),
+                            // CustomTextFormField(
+                            //     controller: group6763Controller,
+                            //     margin: EdgeInsets.only(
+                            //         left: 22.h, top: 24.v, right: 22.h),
+                            //     hintText: "Transactions Status: Unpaid",
+                            //     hintStyle:
+                            //         CustomTextStyles.titleMediumPrimary16_1,
+                            //     textInputAction: TextInputAction.done,
+                            //     contentPadding: EdgeInsets.symmetric(
+                            //         horizontal: 14.h, vertical: 9.v),
+                            //     borderDecoration: TextFormFieldStyleHelper
+                            //         .outlineBlueGrayTL10,
+                            //     fillColor: theme.colorScheme.primary),
+                            Container(
+                                width: 249.h,
+                                height: 35.v,
+                                decoration: BoxDecoration(
+                                    color: Color(0XFF1CCD9D).withOpacity(0.15),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 8),
+                                  child: Text(
+                                    'Transactions Status: Unpaid',
+                                    style: TextStyle(color: Color(0XFF1CCD9D)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+
                             SizedBox(height: 14.v),
                             RichText(
                                 text: TextSpan(children: [
                                   TextSpan(
-                                      text: "3.50",
+                                      text: "300.00",
                                       style: CustomTextStyles.displaySmall34),
                                   TextSpan(
                                       text: "INR",
@@ -163,7 +180,14 @@ class DisneyHoststarPaymentScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the paymentOfDisneyHotstarScreen.
+  // onTapPaynow(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.paymentOfDisneyHotstarScreen);
+  // }
   onTapPaynow(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.paymentOfDisneyHotstarScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => PaymentOfDisneyHotstarScreen(acc)),
+    );
   }
 }

@@ -97,23 +97,24 @@ class PersonToPersonTransferScreen extends StatelessWidget {
                                           child: Text("$accNo",
                                               style: CustomTextStyles
                                                   .titleMedium16_1)),
-                                      CustomTextFormField(
-                                          // controller: group6763Controller,
-                                          margin: EdgeInsets.only(
-                                              left: 22.h,
-                                              top: 19.v,
-                                              right: 22.h),
-                                          hintText:
-                                              "Transactions Status: Pending",
-                                          hintStyle: CustomTextStyles
-                                              .titleMediumPrimary16_1,
-                                          //textInputAction: TextInputAction.done,
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 23.h, vertical: 9.v),
-                                          borderDecoration:
-                                              TextFormFieldStyleHelper
-                                                  .outlineBlack,
-                                          fillColor: Colors.red[100]),
+                                      Container(
+                                          width: 249.h,
+                                          height: 35.v,
+                                          decoration: BoxDecoration(
+                                              color: Color(0XFF1CCD9D)
+                                                  .withOpacity(0.15),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              'Transactions Status: Sent',
+                                              style: TextStyle(
+                                                  color: Color(0XFF1CCD9D)),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),
                                       SizedBox(height: 15.v),
                                       RichText(
                                           text: TextSpan(children: [

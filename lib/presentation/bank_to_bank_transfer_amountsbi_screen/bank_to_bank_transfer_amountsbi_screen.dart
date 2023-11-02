@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/bank_to_bank_transfer_confirmationsbi_screen/bank_to_bank_transfer_confirmationsbi_screen.dart';
+
 import '../bank_to_bank_transfer_amountsbi_screen/widgets/chipviewgroupei_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -246,8 +248,18 @@ class BankToBankTransferAmountsbiScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the bankToBankTransferConfirmationsbiScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.bankToBankTransferConfirmationsbiScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.bankToBankTransferConfirmationsbiScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => BankToBankTransferConfirmationsbiScreen(
+              nameController.text.toString(),
+              cardNumberController.text.toString(),
+              amountController.text.toString())),
+    );
   }
 }

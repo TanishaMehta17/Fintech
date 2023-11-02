@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/bank_to_bank_transfer_confirmation_indian_screen/bank_to_bank_transfer_confirmation_indian_screen.dart';
+
 import '../bank_to_bank_transfer_amount_indian_screen/widgets/chipviewgroupth_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
@@ -97,7 +99,7 @@ class BankToBankTransferAmountIndianScreen extends StatelessWidget {
                           SizedBox(height: 14.v),
                           CustomTextFormField(
                               controller: amountController,
-                              hintText: "250.00",
+                              hintText: "",
                               hintStyle: CustomTextStyles.headlineMediumPrimary,
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 30.h, vertical: 15.v),
@@ -243,8 +245,18 @@ class BankToBankTransferAmountIndianScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the bankToBankTransferConfirmationIndianScreen.
+  // onTapContinue(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.bankToBankTransferConfirmationIndianScreen);
+  // }
   onTapContinue(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.bankToBankTransferConfirmationIndianScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => BankToBankTransferConfirmationIndianScreen(
+              nameController.text.toString(),
+              cardNumberController.text.toString(),
+              amountController.text.toString())),
+    );
   }
 }

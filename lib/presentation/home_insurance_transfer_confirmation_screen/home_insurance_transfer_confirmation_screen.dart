@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/home_insurance_confirmation_successful_transfer_screen/home_insurance_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -9,7 +10,9 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class HomeInsuranceTransferConfirmationScreen extends StatelessWidget {
-  HomeInsuranceTransferConfirmationScreen({Key? key}) : super(key: key);
+  var acc;
+  HomeInsuranceTransferConfirmationScreen(this.acc, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -111,7 +114,7 @@ class HomeInsuranceTransferConfirmationScreen extends StatelessWidget {
                                                   style: CustomTextStyles
                                                       .titleLargeBluegray900_1))),
                                       SizedBox(height: 18.v),
-                                      Text("1******2135",
+                                      Text("$acc",
                                           style:
                                               CustomTextStyles.titleMedium16_1),
                                       SizedBox(height: 19.v),
@@ -233,8 +236,16 @@ class HomeInsuranceTransferConfirmationScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the homeInsuranceConfirmationSuccessfulTransferScreen.
+  // onTapSend(BuildContext context) {
+  //   Navigator.pushNamed(
+  //       context, AppRoutes.homeInsuranceConfirmationSuccessfulTransferScreen);
+  // }
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(
-        context, AppRoutes.homeInsuranceConfirmationSuccessfulTransferScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              HomeInsuranceConfirmationSuccessfulTransferScreen(acc)),
+    );
   }
 }

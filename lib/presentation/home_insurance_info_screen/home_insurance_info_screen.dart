@@ -1,3 +1,5 @@
+import 'package:tanisha_s_application14/presentation/home_insurance_confirmation_screen/home_insurance_confirmation_screen.dart';
+
 import '../home_insurance_info_screen/widgets/chipviewmonthly_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
@@ -460,7 +462,15 @@ class HomeInsuranceInfoScreen extends StatelessWidget {
     Navigator.pushNamed(context, AppRoutes.notificationScreen);
   }
 
+  // onTaphousepay(BuildContext context) {
+  //   Navigator.pushNamed(context, AppRoutes.homeInsuranceConfirmationScreen);
+  // }
   onTaphousepay(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homeInsuranceConfirmationScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => HomeInsuranceConfirmationScreen(
+              cardNumberController.text.toString())),
+    );
   }
 }
