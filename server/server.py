@@ -255,6 +255,31 @@ def water_bill():
     except jwt.InvalidTokenError:
         return jsonify({'message': 'Invalid token'}), 401
 
+@app.route('/payment_interface',methods=["POST"])
+def payment_interface():
+    token=request.headers.get('token')
+
+    if not token:
+        return jsonify({'message':'token is missing'}), 401
+
+    try:
+        data =jwt.decode(token,app.config['SECRET_KEY'],algorithms=['HS256'])
+        Password=request.headers.get('pin')
+        if data["pin"]==Password:
+            data2=request.get_json()
+            data2["customer_id"]=data["id"]
+            data2["timestamp"]=str(datetime.datetime.now())
+            with open("data.csv","a") as file:
+                writer=csv.DictWriter(file,fieldnames=fields)
+                writer.writerow(data2)
+            return jsonify({'message': 'Your payment has been transferred successfully'}), 200
+        else:
+            return jsonify({'message': 'Invalid Pin try again!'}), 400
+    except jwt.ExpiredSignatureError:
+        return jsonify({'message': 'token is expired'}), 401
+    except jwt.InvalidTokenError:
+        return jsonify({'message': 'Invalid token'}), 401
+
 @app.route('/internet_bill',methods=['POST'])
 def internet_bill():
     token=request.headers.get('token')
@@ -834,4 +859,4 @@ def person_to_person():
         return jsonify({'message': 'Invalid token'}), 401
 
 
-app.run(port=5000)
+app.run(host="192.168.111.136",port=5000)
