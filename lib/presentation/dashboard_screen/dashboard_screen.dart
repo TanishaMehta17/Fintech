@@ -213,7 +213,13 @@ class DashboardScreen extends StatelessWidget {
                                                           right: 53.h),
                                                       child: Row(children: [
                                                         Column(children: [
-                                                        
+                                                          // Container(
+                                                          //   width: 30.0,
+                                                          //   height: 36.0,
+                                                          // color: Color(
+                                                          //         0xFFA4A9AE)
+                                                          //     .withOpacity(
+                                                          //         0.25),
                                                           InkWell(
                                                             child: CustomImageView(
                                                                 svgPath:
@@ -239,7 +245,20 @@ class DashboardScreen extends StatelessWidget {
                                                                     left: 60.h),
                                                             child: Column(
                                                                 children: [
-                                                                  
+                                                                  //Container(
+                                                                  // width: 33.0,
+                                                                  // height:
+                                                                  //     36.0,
+                                                                  // decoration:
+                                                                  //     BoxDecoration(
+                                                                  //   borderRadius:
+                                                                  //       BorderRadius.circular(
+                                                                  //           5.0),
+                                                                  //   color: Color(
+                                                                  //           0xFFA4A9AE)
+                                                                  //       .withOpacity(
+                                                                  //           0.25),
+                                                                  // ),
                                                                   InkWell(
                                                                     child: CustomImageView(
                                                                         svgPath:
@@ -270,7 +289,20 @@ class DashboardScreen extends StatelessWidget {
                                                                     left: 50.h),
                                                             child: Column(
                                                                 children: [
-                                                                  
+                                                                  // Container(
+                                                                  //   width: 33.0,
+                                                                  //   height:
+                                                                  //       36.0,
+                                                                  //   decoration:
+                                                                  //       BoxDecoration(
+                                                                  //     borderRadius:
+                                                                  //         BorderRadius.circular(
+                                                                  //             5.0),
+                                                                  //     color: Color(
+                                                                  //             0xFFA4A9AE)
+                                                                  //         .withOpacity(
+                                                                  //             0.25),
+                                                                  //   ),
                                                                   InkWell(
                                                                     child: CustomImageView(
                                                                         svgPath:
@@ -305,7 +337,18 @@ class DashboardScreen extends StatelessWidget {
                                                                             .h),
                                                                 child: Column(
                                                                     children: [
-                                                                     
+                                                                      // Container(
+                                                                      //   width:
+                                                                      //       38.0,
+                                                                      //   height:
+                                                                      //       36.0,
+                                                                      //   decoration:
+                                                                      //       BoxDecoration(
+                                                                      //     borderRadius:
+                                                                      //         BorderRadius.circular(5.0),
+                                                                      //     color:
+                                                                      //         Color(0xFFFF6363),
+                                                                      //   ),
                                                                       InkWell(
                                                                         child: CustomImageView(
                                                                             color:
@@ -692,6 +735,20 @@ class DashboardScreen extends StatelessWidget {
                                                           SizedBox(height: 4.0)
                                                         ],
                                                       )
+                                                          // child: ListView.separated(
+                                                          //     physics:
+                                                          //         NeverScrollableScrollPhysics(),
+                                                          //     shrinkWrap: true,
+                                                          //     separatorBuilder:
+                                                          //         (context, index) {
+                                                          //       return SizedBox(
+                                                          //           height: 14.v);
+                                                          //     },
+                                                          // itemCount: 3,
+                                                          // itemBuilder:
+                                                          //     (context, index) {
+                                                          //   return UserpaymentItemWidget();
+                                                          // }
 
                                                           ))
                                                 ]))),
@@ -874,14 +931,29 @@ class DashboardScreen extends StatelessWidget {
                 CustomBottomBar(onChanged: (BottomBarEnum type) {})));
   }
 
+  /// Navigates to the profileScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the [Navigator] widget
+  /// to push the named route for the profileScreen.
   onTapProfileone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.profileScreen);
   }
 
+  /// Navigates to the moerOptionsScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the [Navigator] widget
+  /// to push the named route for the moerOptionsScreen.
   onTapTxtMoreoptions(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.moerOptionsScreen);
   }
 
+  /// Navigates to the giftCardsOneScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the [Navigator] widget
+  /// to push the named route for the giftCardsOneScreen.
   onTapColumncalendar(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.giftCardsOneScreen);
   }
@@ -898,10 +970,20 @@ class DashboardScreen extends StatelessWidget {
     Navigator.pushNamed(context, AppRoutes.netflixPaymentScreen);
   }
 
+  /// Navigates to the moneyTransferScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the [Navigator] widget
+  /// to push the named route for the moneyTransferScreen.
   onTapColumnclock(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.moneyTransferScreen);
   }
 
+  /// Navigates to the payBillScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the [Navigator] widget
+  /// to push the named route for the payBillScreen.
   onTapColumnbookmark(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.payBillScreen);
   }

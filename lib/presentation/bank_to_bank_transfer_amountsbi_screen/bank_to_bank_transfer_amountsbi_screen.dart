@@ -1,6 +1,5 @@
 import 'package:tanisha_s_application14/presentation/bank_to_bank_transfer_confirmationsbi_screen/bank_to_bank_transfer_confirmationsbi_screen.dart';
 
-import '../bank_to_bank_transfer_amountsbi_screen/widgets/chipviewgroupei_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';

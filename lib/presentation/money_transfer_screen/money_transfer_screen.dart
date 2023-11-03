@@ -1,8 +1,6 @@
 import 'package:tanisha_s_application14/presentation/person_to_persontransfer_amount_screen/person_to_persontransfer_amount_screen.dart';
 
-import '../money_transfer_screen/widgets/userprofile_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';

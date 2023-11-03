@@ -1,6 +1,5 @@
 import 'package:tanisha_s_application14/presentation/home_insurance_confirmation_screen/home_insurance_confirmation_screen.dart';
 
-import '../home_insurance_info_screen/widgets/chipviewmonthly_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:tanisha_s_application14/core/app_export.dart';

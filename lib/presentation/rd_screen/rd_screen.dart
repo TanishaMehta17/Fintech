@@ -5,7 +5,6 @@ import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_3.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/custom_app_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_bottom_bar.dart';
-import 'package:tanisha_s_application14/widgets/custom_checkbox_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 

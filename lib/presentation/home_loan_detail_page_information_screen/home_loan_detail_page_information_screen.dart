@@ -8,7 +8,6 @@ import 'package:tanisha_s_application14/widgets/app_bar/custom_app_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_bottom_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_icon_button.dart';
-import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart';
 
 // ignore_for_file: must_be_immutable
 class HomeLoanDetailPageInformationScreen extends StatelessWidget {

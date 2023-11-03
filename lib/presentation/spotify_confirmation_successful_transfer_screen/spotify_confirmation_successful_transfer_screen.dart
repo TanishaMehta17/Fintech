@@ -9,8 +9,9 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 
 // ignore_for_file: must_be_immutable
 class SpotifyConfirmationSuccessfulTransferScreen extends StatelessWidget {
-  var acc;dynamic token;
-  SpotifyConfirmationSuccessfulTransferScreen({required this.acc,required this.token});
+  var acc;
+  SpotifyConfirmationSuccessfulTransferScreen(this.acc, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 

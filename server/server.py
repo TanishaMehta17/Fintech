@@ -25,6 +25,14 @@ bcrypt = Bcrypt(app)
 CORS(app)
 
 
+def write_file(data):
+    with open("data.csv","a",newline='') as file:
+        writer=csv.DictWriter(file,fieldnames=fields)
+        writer.writerow(data)
+
+def addTransactiondetails(data):
+    db.transactions.insert_one(data)
+
 @app.route('/register', methods=['POST'])
 def register():
     data = {'username':request.headers.get("username"),'email':request.headers.get("email")}
@@ -40,7 +48,7 @@ def register():
 def login():
     auth = request.headers.get("username")
     auth_pwd=request.headers.get("password")
-    
+    data=request.get_json()
     user=db.users.find_one({'username':auth},{'_id':0})
 
     if not user or not bcrypt.check_password_hash(user["password"], auth_pwd):
@@ -48,7 +56,11 @@ def login():
 
     token = jwt.encode({'id': user["cid"], 'pin':user["pin"], 'exp': datetime.datetime.now() + datetime.timedelta(hours=1)},
                       app.config['SECRET_KEY'], algorithm='HS256')
-    print(token)
+    
+    data["customer_id"]=user["cid"]
+    data["timestamp"]=str(datetime.datetime.now())
+    write_file(data)
+    
     return jsonify({'token': token}), 200
 
 @app.route('/home_loan',methods=['POST'])
@@ -269,9 +281,9 @@ def payment_interface():
             data2=request.get_json()
             data2["customer_id"]=data["id"]
             data2["timestamp"]=str(datetime.datetime.now())
-            with open("data.csv","a") as file:
-                writer=csv.DictWriter(file,fieldnames=fields)
-                writer.writerow(data2)
+            write_file(data2)
+            addTransactiondetails(data2)
+            
             return jsonify({'message': 'Your payment has been transferred successfully'}), 200
         else:
             return jsonify({'message': 'Invalid Pin try again!'}), 400
@@ -859,4 +871,4 @@ def person_to_person():
         return jsonify({'message': 'Invalid token'}), 401
 
 
-app.run(host="192.168.111.136",port=5000)
+app.run(port=5000)

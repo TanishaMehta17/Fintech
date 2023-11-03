@@ -1,6 +1,5 @@
 import 'package:tanisha_s_application14/presentation/gold_loan_payment_screen/gold_loan_payment_screen.dart';
 
-import '../gold_loan_details_screen/widgets/chipview6_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';

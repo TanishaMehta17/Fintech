@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:tanisha_s_application14/theme/theme_helper.dart';
 import 'package:tanisha_s_application14/routes/app_routes.dart';
 

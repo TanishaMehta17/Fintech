@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
-import 'package:tanisha_s_application14/presentation/analytics_apple_screen/analytics_apple_screen.dart';
 import 'package:tanisha_s_application14/presentation/analytics_screen/analytics_screen.dart';
 import 'package:tanisha_s_application14/presentation/atm_locator_screen/atm_locator_screen.dart';
-import 'package:tanisha_s_application14/presentation/dashboard_profile_screen/dashboard_profile_screen.dart';
 import 'package:tanisha_s_application14/presentation/dashboard_screen/dashboard_screen.dart';
 import 'package:tanisha_s_application14/presentation/scanner_screen/scanner_screen.dart';
-import 'package:tanisha_s_application14/presentation/setting_screen/setting_screen.dart';
-import 'package:tanisha_s_application14/theme/custom_text_style.dart';
-import 'package:tanisha_s_application14/theme/theme_helper.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
-import 'package:tanisha_s_application14/widgets/custom_image_view.dart';
 
 class CustomBottomBar extends StatefulWidget {
   CustomBottomBar({this.onChanged});

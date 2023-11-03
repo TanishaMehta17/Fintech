@@ -321,6 +321,7 @@ class DisneyHotstarPaymentScreen extends StatelessWidget {
                                                   null) {
                                                 return 'Please enter a valid number';
                                               }
+                                              return null;
                                             },
                                             fillColor: Color(0XFFA4A9AE)
                                                 .withOpacity(0.15),

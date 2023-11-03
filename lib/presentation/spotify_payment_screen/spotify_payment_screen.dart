@@ -37,10 +37,6 @@ class SpotifyPaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic>? args =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
-    Map<String, dynamic> argument = {};
-    if (args != null) argument = args;
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
@@ -398,7 +394,7 @@ class SpotifyPaymentScreen extends StatelessWidget {
                                             onTap: () {
                                               if (_formKey.currentState!
                                                   .validate()) {
-                                                onTapSend(context,argument);
+                                                onTapSend(context);
                                               }
                                             },
                                             alignment: Alignment.center)
@@ -424,13 +420,12 @@ class SpotifyPaymentScreen extends StatelessWidget {
   // onTapSend(BuildContext context) {
   //   Navigator.pushNamed(context, AppRoutes.spotifyPaymentOneScreen);
   // }
-  onTapSend(BuildContext context,dynamic args) {
+  onTapSend(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) =>
-              SpotifyPaymentOneScreen(acc:cardNumberController.text.toString(),token:args["token"])
-    ),
+              SpotifyPaymentOneScreen(cardNumberController.text.toString())),
     );
   }
 }

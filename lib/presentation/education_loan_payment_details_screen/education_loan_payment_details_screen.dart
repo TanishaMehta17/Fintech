@@ -1,6 +1,5 @@
 import 'package:tanisha_s_application14/presentation/education_loan_payment_screen/education_loan_payment_screen.dart';
 
-import '../education_loan_payment_details_screen/widgets/chipview8_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
