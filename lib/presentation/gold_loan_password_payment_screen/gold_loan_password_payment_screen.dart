@@ -8,6 +8,11 @@ import 'package:tanisha_s_application14/widgets/app_bar/custom_app_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_bottom_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_icon_button.dart';
+import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:provider/provider.dart';
+import '../customer_id_provider.dart';
 
 // ignore_for_file: must_be_immutable
 class GoldLoanPasswordPaymentScreen extends StatelessWidget {
@@ -23,7 +28,8 @@ class GoldLoanPasswordPaymentScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  void onTapVerifyotp(BuildContext context) {
+
+  Future<void> onTapConfirm(BuildContext context, dynamic cid) async {
     if (number_controller.text.isEmpty ||
         number_controller1.text.isEmpty ||
         number_controller2.text.isEmpty ||
@@ -39,12 +45,82 @@ class GoldLoanPasswordPaymentScreen extends StatelessWidget {
       );
     } else {
       // All OTP fields are filled, navigate to the next screen.
-      Navigator.pushNamed(context, AppRoutes.goldLoanRecipytScreen);
+      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
+      String dig1 = number_controller.text;
+      String dig2 = number_controller1.text;
+      String dig3 = number_controller2.text;
+      String dig4 = number_controller3.text;
+      String pin = dig1 + dig2 + dig3 + dig4;
+
+      if (cid != null) {
+        var response = await http.post(
+          Uri.parse("http://localhost:5000/payment_interface"),
+          headers: {
+            "Content-Type": "application/json",
+            "token": cid,
+            "pin": pin
+          },
+          body: jsonEncode({"event": "loan_payment", "scheme": "gold"}),
+        );
+
+        if (response.statusCode == 200) {
+          Navigator.pushNamed(context, AppRoutes.goldLoanRecipytScreen);
+        } else if (response.statusCode == 400) {
+          ///Invalid PIN
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Error'),
+                content: Text('Invalid credentials. Please try again.'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        } else if (response.statusCode == 401) {
+          ///Login screen redirect session expire
+          Navigator.pushNamed(context, AppRoutes.loginScreen);
+        } else {
+          ///Some error occured
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Error'),
+                content: Text('Some error occured. Please try again later.'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      } else {
+        Navigator.pushNamed(context, AppRoutes.loginScreen);
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    var customerId = Provider.of<CustomerIdProvider>(context).customerId;
+    if (customerId != null)
+      customerId = customerId;
+    else
+      customerId = null;
+
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
@@ -374,7 +450,7 @@ class GoldLoanPasswordPaymentScreen extends StatelessWidget {
                                   text: 'Confirm',
                                   width: 350,
                                   onTap: () {
-                                    onTapVerifyotp(context);
+                                    onTapConfirm(context, customerId);
                                   },
                                 ),
                               )
@@ -400,7 +476,4 @@ class GoldLoanPasswordPaymentScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the goldLoanRecipytScreen.
-  onTapConfirm(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.goldLoanRecipytScreen);
-  }
 }
