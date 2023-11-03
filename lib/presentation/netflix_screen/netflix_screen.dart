@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
-import 'package:tanisha_s_application14/presentation/netflix_confirmation_successful_transfer_screen/netflix_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -12,14 +11,11 @@ import 'package:tanisha_s_application14/widgets/custom_pin_code_text_field.dart'
 import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:provider/provider.dart';
+import '../customer_id_provider.dart';
 
 // ignore_for_file: must_be_immutable
 class NetflixScreen extends StatelessWidget {
-  var acc;
-  NetflixScreen(this.acc, {Key? key}) : super(key: key);
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-
   final number_controller = TextEditingController();
   final number_controller1 = TextEditingController();
   final number_controller2 = TextEditingController();
@@ -28,38 +24,20 @@ class NetflixScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  
-  void onTapVerifyotp(BuildContext context) {
-    if (number_controller.text.isEmpty ||
-        number_controller1.text.isEmpty ||
-        number_controller2.text.isEmpty ||
-        number_controller3.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'All OTP fields must be filled',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          backgroundColor: Colors.red,
-        ),
-      );
-    } else {
-      // All OTP fields are filled, navigate to the next screen.
-      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
+  NetflixScreen({Key? key}) : super(key: key);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                NetflixConfirmationSuccessfulTransferScreen(acc)),
-      );
-    }
-  }
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   TextEditingController transactionsStaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var customerId = Provider.of<CustomerIdProvider>(context).customerId;
+    if (customerId != null)
+      customerId = customerId;
+    else
+      customerId = '';
+
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
@@ -73,7 +51,7 @@ class NetflixScreen extends StatelessWidget {
                       onTapArrowleftone(context);
                     }),
                 centerTitle: true,
-                title: AppbarSubtitle2(text: "Password"),
+                title: AppbarSubtitle2(text: customerId),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgCheckmark,
@@ -299,14 +277,14 @@ class NetflixScreen extends StatelessWidget {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 150),
+                          padding: const EdgeInsets.only(top: 100),
                           child: CustomElevatedButton(
-                            text: 'Confirm',
+                            text: "Confirm",
                             width: 350,
                             onTap: () {
                               // onTapPaynow(context);
                               //onTapConfirm(context);
-                              onTapVerifyotp(context);
+                              onTapConfirm(context, customerId);
                             },
                           ),
                         )
@@ -326,49 +304,85 @@ class NetflixScreen extends StatelessWidget {
     Navigator.pop(context);
   }
 
-  Future<void> onTapConfirm(BuildContext context) async {
+  Future<void> onTapConfirm(BuildContext context, dynamic cid) async {
+    if (number_controller.text.isEmpty ||
+        number_controller1.text.isEmpty ||
+        number_controller2.text.isEmpty ||
+        number_controller3.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'All OTP fields must be filled',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      // All OTP fields are filled, navigate to the next screen.
+      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
+    
     String dig1 = number_controller.text;
     String dig2 = number_controller1.text;
     String dig3 = number_controller2.text;
     String dig4 = number_controller3.text;
     String pin = dig1 + dig2 + dig3 + dig4;
 
-    var response = await http.post(
-      Uri.parse("http://localhost:5000/netflix"),
-      headers: {
-        "Content-Type": "application/json",
-        "token": "token",
-        "pin": pin
-      },
-      body: jsonEncode({"event": "bill_payment", "scheme": "netflix"}),
-    );
-
-    if (response.statusCode == 200) {
-      Navigator.pushNamed(
-          context, AppRoutes.netflixConfirmationSuccessfulTransferScreen);
-    } else if (response.statusCode == 400) {
-      ///Invalid PIN
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Invalid credentials. Please try again.'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
+    if (cid != null) {
+      var response = await http.post(
+        Uri.parse("http://localhost:5000/netflix"),
+        headers: {"Content-Type": "application/json", "token": cid, "pin": pin},
+        body: jsonEncode({"event": "bill_payment", "scheme": "netflix"}),
       );
-    } else if (response.statusCode == 401) {
-      ///Login screen redirect session expire
+
+      if (response.statusCode == 200) {
+        Navigator.pushNamed(
+            context, AppRoutes.spotifyConfirmationSuccessfulTransferScreen);
+      } else if (response.statusCode == 400) {
+        ///Invalid PIN
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Invalid credentials. Please try again.'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      } else if (response.statusCode == 401) {
+        ///Login screen redirect session expire
+        Navigator.pushNamed(context, AppRoutes.loginScreen);
+      }else{
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Some error occured try again later!'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
     } else {
       ///Some error occured
+      Navigator.pushNamed(context, AppRoutes.loginScreen);
     }
+  }
   }
 }
