@@ -11,10 +11,11 @@ import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class SpotifyPaymentOneScreen extends StatelessWidget {
-  var acc;
-  SpotifyPaymentOneScreen(this.acc, {Key? key}) : super(key: key);
+  var acc;Map<String,dynamic> token;
+  // SpotifyPaymentOneScreen(this.acc, {Key? key}) : super(key: key);
 
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  // GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  SpotifyPaymentOneScreen({required this.acc, required this.token});
 
   TextEditingController group6763Controller = TextEditingController();
 
@@ -50,7 +51,7 @@ class SpotifyPaymentOneScreen extends StatelessWidget {
                       margin:
                           EdgeInsets.only(left: 37.h, top: 9.v, right: 36.h),
                       child: Text(
-                          "Please make sure that you want to pay netflix bill",
+                          "Please make sure that you want to pay spotify bill",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -174,7 +175,7 @@ class SpotifyPaymentOneScreen extends StatelessWidget {
                       margin:
                           EdgeInsets.only(left: 26.h, top: 38.v, right: 26.h),
                       onTap: () {
-                        onTapPaynow(context);
+                        onTapPaynow(context,token);
                       })
                 ])),
             bottomNavigationBar:
@@ -197,10 +198,10 @@ class SpotifyPaymentOneScreen extends StatelessWidget {
   // onTapPaynow(BuildContext context) {
   //   Navigator.pushNamed(context, AppRoutes.spotifyPaymentEntreScreen);
   // }
-  onTapPaynow(BuildContext context) {
+  onTapPaynow(BuildContext context,dynamic args) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SpotifyPaymentEntreScreen(acc)),
+      MaterialPageRoute(builder: (context) => SpotifyPaymentEntreScreen(acc:acc,token:args)),
     );
   }
 }

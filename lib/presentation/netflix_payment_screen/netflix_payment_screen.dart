@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
-import 'package:tanisha_s_application14/presentation/netfiix_payment_amount_screen/netfiix_payment_amount_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -129,7 +128,7 @@ class NetflixPaymentScreen extends StatelessWidget {
                                                   child: RichText(
                                                       text: TextSpan(children: [
                                                         TextSpan(
-                                                            text: "500.00",
+                                                            text: "1.00",
                                                             style: CustomTextStyles
                                                                 .titleLargeBluegray900),
                                                         TextSpan(
@@ -393,15 +392,7 @@ class NetflixPaymentScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the netfiixPaymentAmountScreen.
-  // onTapSend(BuildContext context) {
-  //   Navigator.pushNamed(context, AppRoutes.netfiixPaymentAmountScreen);
-  // }
   onTapSend(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) =>
-              NetfiixPaymentAmountScreen(cardNumberController.text.toString())),
-    );
+    Navigator.pushNamed(context, AppRoutes.netfiixPaymentAmountScreen);
   }
 }

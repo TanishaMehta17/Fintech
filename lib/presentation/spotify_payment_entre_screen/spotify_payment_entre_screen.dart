@@ -15,8 +15,8 @@ import 'dart:convert';
 
 // ignore_for_file: must_be_immutable
 class SpotifyPaymentEntreScreen extends StatelessWidget {
-  var acc;
-  SpotifyPaymentEntreScreen(this.acc, {Key? key}) : super(key: key);
+  var acc;dynamic token;
+  SpotifyPaymentEntreScreen({required this.acc,required this.token});
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
   final number_controller = TextEditingController();
@@ -27,7 +27,8 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
-  void onTapVerifyotp(BuildContext context) {
+  
+  Future <void> onTapVerifyotp(BuildContext context,dynamic args) async {
     if (number_controller.text.isEmpty ||
         number_controller1.text.isEmpty ||
         number_controller2.text.isEmpty ||
@@ -44,13 +45,54 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
     } else {
       // All OTP fields are filled, navigate to the next screen.
       // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
+      String dig1 = number_controller.text;
+      String dig2 = number_controller1.text;
+      String dig3 = number_controller2.text;
+      String dig4 = number_controller3.text;
+      String pin = dig1 + dig2 + dig3 + dig4;
 
-      Navigator.push(
+      var response = await http.post(
+        Uri.parse("http://localhost:5000/spotify"),
+        headers: {
+          "Content-Type": "application/json",
+          "token": args["token"],
+          "pin": pin
+        },
+        body: jsonEncode({"event": "bill_payment", "scheme": "spotify"}),
+      );
+
+      if (response.statusCode == 200) {
+        Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) =>
-                SpotifyConfirmationSuccessfulTransferScreen(acc)),
+                SpotifyConfirmationSuccessfulTransferScreen(acc:acc,token:token)),
       );
+      } else if (response.statusCode == 400) {
+        ///Invalid PIN
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Invalid credentials. Please try again.'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      } else if (response.statusCode == 401) {
+        ///Login screen redirect session expire
+      } else {
+        ///Some error occured
+      }
+      
     }
   }
 
@@ -302,7 +344,7 @@ class SpotifyPaymentEntreScreen extends StatelessWidget {
                             text: 'Confirm',
                             width: 350,
                             onTap: () {
-                              onTapVerifyotp(context);
+                              onTapVerifyotp(context,token);
                             },
                           ),
                         )

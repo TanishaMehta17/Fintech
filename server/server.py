@@ -48,6 +48,7 @@ def login():
 
     token = jwt.encode({'id': user["cid"], 'pin':user["pin"], 'exp': datetime.datetime.now() + datetime.timedelta(hours=1)},
                       app.config['SECRET_KEY'], algorithm='HS256')
+    print(token)
     return jsonify({'token': token}), 200
 
 @app.route('/home_loan',methods=['POST'])
@@ -64,7 +65,7 @@ def home_loan():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -90,7 +91,7 @@ def gold_loan():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -115,7 +116,7 @@ def education_loan():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -141,7 +142,7 @@ def car_loan():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -166,7 +167,7 @@ def netflix():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -192,7 +193,7 @@ def disney():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -217,7 +218,7 @@ def spotify():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -242,7 +243,7 @@ def water_bill():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -267,7 +268,7 @@ def internet_bill():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -292,7 +293,7 @@ def electricity_bill():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -317,7 +318,7 @@ def bank_to_bank():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -343,7 +344,7 @@ def recharge():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -369,7 +370,7 @@ def donationcareclub():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -395,7 +396,7 @@ def donationheadfoundation():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -422,7 +423,7 @@ def birthdaycard():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -448,7 +449,7 @@ def eid_card():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -475,7 +476,7 @@ def marrigecard():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -502,7 +503,7 @@ def homeinsurance():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -528,7 +529,7 @@ def family_insurance():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -554,7 +555,7 @@ def health_insurance():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -581,7 +582,7 @@ def kyc_pan():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -608,7 +609,7 @@ def kyc_voterid():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -635,7 +636,7 @@ def kyc_dv():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -661,7 +662,7 @@ def Kyc_adharcard():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -687,7 +688,7 @@ def phone_number_kyc():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -713,7 +714,7 @@ def fd():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -742,7 +743,7 @@ def rd():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -768,7 +769,7 @@ def apy():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -794,7 +795,7 @@ def fast_tag():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)
@@ -820,7 +821,7 @@ def person_to_person():
         if data["pin"]==Password:
             data2=request.get_json()
             data2["customer_id"]=data["id"]
-            data2["timestamp"]=datetime.datetime.now()
+            data2["timestamp"]=str(datetime.datetime.now())
             with open("data.csv","a") as file:
                 writer=csv.DictWriter(file,fieldnames=fields)
                 writer.writerow(data2)

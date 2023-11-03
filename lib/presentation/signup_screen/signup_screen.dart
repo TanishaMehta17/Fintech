@@ -210,6 +210,11 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   onTapSendOTP(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.otpVarificationScreen);
+    Navigator.pushNamed(context, AppRoutes.otpVarificationScreen ,arguments: {
+      "username": nameController.text,
+      "email": emailController.text,
+      "mobile": mobileNumberController.text,
+      "password": passwordController.text,
+    });
   }
 }

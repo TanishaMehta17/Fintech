@@ -28,6 +28,7 @@ class NetflixScreen extends StatelessWidget {
   final FocusNode second = FocusNode();
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
+  
   void onTapVerifyotp(BuildContext context) {
     if (number_controller.text.isEmpty ||
         number_controller1.text.isEmpty ||
