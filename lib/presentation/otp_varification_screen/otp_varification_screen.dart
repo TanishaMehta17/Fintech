@@ -6,7 +6,10 @@ import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/custom_app_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_bottom_bar.dart';
+import 'package:tanisha_s_application14/presentation/pop_add_pin_screen/pop_add_pin_screen.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 // ignore_for_file: must_be_immutable
 class OtpVarificationScreen extends StatelessWidget {
@@ -19,7 +22,7 @@ class OtpVarificationScreen extends StatelessWidget {
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
 
-  void onTapVerifyotp(BuildContext context) {
+  Future<void> onTapConfirm(BuildContext context) async {
     if (number_controller.text.isEmpty ||
         number_controller1.text.isEmpty ||
         number_controller2.text.isEmpty ||
@@ -35,11 +38,55 @@ class OtpVarificationScreen extends StatelessWidget {
       );
     } else {
       // All OTP fields are filled, navigate to the next screen.
-      Navigator.pushNamed(context, AppRoutes.setFingerprintScreen);
+      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
+      String dig1 = number_controller.text;
+      String dig2 = number_controller1.text;
+      String dig3 = number_controller2.text;
+      String dig4 = number_controller3.text;
+      String pin = dig1 + dig2 + dig3 + dig4;
+
+      var response = await http.post(
+        Uri.parse("http://localhost:5000/verify_user"),
+        headers: {"Content-Type": "application/json", "otp": pin},
+        body: jsonEncode({"mobile": mobile}),
+      );
+
+      if (response.statusCode == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  PopAddPinScreen(name, email, mobile, password)),
+        );
+      } else if (response.statusCode == 400) {
+        ///Invalid PIN
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Invalid credentials. Please try again.'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        Navigator.pushNamed(context, AppRoutes.signupScreen);
+      }
     }
   }
 
-  OtpVarificationScreen({Key? key}) : super(key: key);
+  var name, email, mobile, password;
+  OtpVarificationScreen(this.name, this.email, this.mobile, this.password,
+      {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -93,8 +140,7 @@ class OtpVarificationScreen extends StatelessWidget {
                             //     style: CustomTextStyles.titleMediumPrimary_2)
                           ]),
                           textAlign: TextAlign.center)),
-                  Text("+1 123 3698 789",
-                      style: CustomTextStyles.titleMediumPrimary_2),
+                  Text(mobile, style: CustomTextStyles.titleMediumPrimary_2),
                   // CustomPinCodeTextField(
                   //     context: context,
                   //     margin:
@@ -247,7 +293,7 @@ class OtpVarificationScreen extends StatelessWidget {
                     //   onTapNext(context);
                     // }
                     onTap: () {
-                      onTapVerifyotp(context);
+                      onTapConfirm(context);
                     },
                   )
                 ])),
