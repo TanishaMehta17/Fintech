@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
-import 'package:tanisha_s_application14/presentation/birthday/birthday.dart';
+import 'package:tanisha_s_application14/presentation/marrige_gift_carde_password_screen/marrige_gift_carde_password_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
