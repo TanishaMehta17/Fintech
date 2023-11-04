@@ -221,7 +221,7 @@ class NetfiixPaymentAmountScreen extends StatelessWidget {
   onTapPaynow(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NetflixScreen()),
+      MaterialPageRoute(builder: (context) => NetflixScreen(accNo)),
     );
   }
 }
