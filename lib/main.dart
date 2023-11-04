@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'tanisha_s_application14',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.payBillScreen,
+      initialRoute: AppRoutes.dashboardScreen,
       routes: AppRoutes.routes,
     );
   }
