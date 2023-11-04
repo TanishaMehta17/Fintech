@@ -810,8 +810,10 @@ class AppRoutes {
     settingScreen: (context) => SettingScreen(),
     notificationScreen: (context) => NotificationScreen(),
     mobileNumberPinChangeScreen: (context) => MobileNumberPinChangeScreen(),
-    otpVarificationScreen: (context) => OtpVarificationScreen(),
-    popAddPinScreen: (context) => PopAddPinScreen(),
+    otpVarificationScreen: (context) =>
+        OtpVarificationScreen(String, String, String, String),
+    popAddPinScreen: (context) =>
+        PopAddPinScreen(String, String, String, String),
     dashboardScreen: (context) => DashboardScreen(),
     logoutScreen: (context) => LogoutScreen(),
     atmLocatorScreen: (context) => AtmLocatorScreen(),
