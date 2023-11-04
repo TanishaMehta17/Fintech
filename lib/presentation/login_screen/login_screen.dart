@@ -4,6 +4,8 @@ import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:provider/provider.dart';
+import '../customer_id_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -144,10 +146,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (response.statusCode == 200) {
       Map<String, dynamic> token = jsonDecode(response.body);
-
-      Navigator.pushNamed(context, AppRoutes.dashboardScreen, arguments: {
-        "token": token,
-      });
+      Provider.of<CustomerIdProvider>(context, listen: false)
+          .setCustomerId(token["token"]);
+      Navigator.pushNamed(context, AppRoutes.dashboardScreen);
     } else if (response.statusCode == 400) {
       ///Invalid PIN
       showDialog(
