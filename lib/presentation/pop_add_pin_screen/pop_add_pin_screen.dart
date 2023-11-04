@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
 import 'package:tanisha_s_application14/widgets/custom_bottom_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 // ignore_for_file: must_be_immutable
 class PopAddPinScreen extends StatelessWidget {
@@ -15,7 +17,7 @@ class PopAddPinScreen extends StatelessWidget {
   final FocusNode third = FocusNode();
   final FocusNode fourth = FocusNode();
 
-  void onTapVerifyotp(BuildContext context) {
+  Future<void> onTapConfirm(BuildContext context) async {
     if (number_controller.text.isEmpty ||
         number_controller1.text.isEmpty ||
         number_controller2.text.isEmpty ||
@@ -31,11 +33,54 @@ class PopAddPinScreen extends StatelessWidget {
       );
     } else {
       // All OTP fields are filled, navigate to the next screen.
-      Navigator.pushNamed(context, AppRoutes.dashboardScreen);
+      // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
+      String dig1 = number_controller.text;
+      String dig2 = number_controller1.text;
+      String dig3 = number_controller2.text;
+      String dig4 = number_controller3.text;
+      String pin = dig1 + dig2 + dig3 + dig4;
+
+      var response = await http.post(
+        Uri.parse("http://localhost:5000/register"),
+        headers: {
+          "Content-Type": "application/json",
+          "password": password,
+          "pin": pin
+        },
+        body: jsonEncode({"name": name, "email": email, "mobile": mobile}),
+      );
+
+      if (response.statusCode == 201) {
+        Navigator.pushNamed(context, AppRoutes.loginScreen);
+      } else if (response.statusCode == 400) {
+        ///Invalid PIN
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Invalid credentials. Please try again.'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        ///Some error occured
+        Navigator.pushNamed(context, AppRoutes.signupScreen);
+      }
     }
   }
 
-  PopAddPinScreen({Key? key}) : super(key: key);
+  var name, email, mobile, password;
+  PopAddPinScreen(this.name, this.email, this.mobile, this.password, {Key? key})
+      : super(key: key);
 
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -477,7 +522,7 @@ class PopAddPinScreen extends StatelessWidget {
                                     margin: EdgeInsets.fromLTRB(
                                         33.h, 61.v, 34.h, 29.v),
                                     onTap: () {
-                                      onTapVerifyotp(context);
+                                      onTapConfirm(context);
                                     },
                                     alignment: Alignment.center)
                               ])))
