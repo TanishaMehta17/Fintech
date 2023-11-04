@@ -1,8 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
 import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
+import 'package:tanisha_s_application14/presentation/otp_varification_screen/otp_varification_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SignupScreen extends StatefulWidget {
   SignupScreen({Key? key}) : super(key: key);
@@ -171,7 +173,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             text: "Send OTP",
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
-                                onTapSendOTP(context);
+                                onTapConfirm(context);
                               }
                             },
                           ),
@@ -209,12 +211,70 @@ class _SignupScreenState extends State<SignupScreen> {
     return true;
   }
 
-  onTapSendOTP(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.otpVarificationScreen ,arguments: {
-      "username": nameController.text,
-      "email": emailController.text,
-      "mobile": mobileNumberController.text,
-      "password": passwordController.text,
-    });
+  Future<void> onTapConfirm(BuildContext context) async {
+    // All OTP fields are filled, navigate to the next screen.
+    // Navigator.pushNamed(context, AppRoutes.homeLoanPaymentDoneScreen);
+    String name = nameController.text;
+    String email = emailController.text;
+    String mobile = mobileNumberController.text;
+    String password = passwordController.text;
+
+    var response = await http.post(
+      Uri.parse("http://localhost:5000/check_details"),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({"name": name, "email": email, "mobile": mobile}),
+    );
+
+    if (response.statusCode == 200) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                OtpVarificationScreen(name, email, mobile, password)),
+      );
+    } else if (response.statusCode == 400) {
+      ///Invalid PIN
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Username and email Id exists'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      Navigator.pushNamed(context, AppRoutes.loginScreen);
+    } else if (response.statusCode == 401) {
+      ///Login screen redirect session expire
+      Navigator.pushNamed(context, AppRoutes.loginScreen);
+    } else {
+      ///Some error occured
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Some error occured. Please try again later.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
+
 }
