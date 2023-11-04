@@ -3,21 +3,21 @@ import 'package:tanisha_s_application14/core/app_export.dart';
 import 'package:tanisha_s_application14/widgets/base_button.dart';
 
 class CustomElevatedButton extends BaseButton {
-  CustomElevatedButton({
-    Key? key,
-    this.decoration,
-    this.leftIcon,
-    this.rightIcon,
-    EdgeInsets? margin,
-    VoidCallback? onTap,
-    ButtonStyle? buttonStyle,
-    Alignment? alignment,
-    TextStyle? buttonTextStyle,
-    bool? isDisabled,
-    double? height,
-    double? width,
-    required String text,
-  }) : super(
+  CustomElevatedButton(
+      {Key? key,
+      this.decoration,
+      this.leftIcon,
+      this.rightIcon,
+      EdgeInsets? margin,
+      VoidCallback? onTap,
+      ButtonStyle? buttonStyle,
+      Alignment? alignment,
+      TextStyle? buttonTextStyle,
+      bool? isDisabled,
+      double? height,
+      double? width,
+      required String text})
+      : super(
           text: text,
           onTap: onTap,
           buttonStyle: buttonStyle,

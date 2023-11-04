@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
-import 'package:tanisha_s_application14/presentation/netflix_confirmation_successful_transfer_screen/netflix_confirmation_successful_transfer_screen.dart';
 import 'package:tanisha_s_application14/presentation/netflix_screen/netflix_screen.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
@@ -8,7 +7,6 @@ import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/custom_app_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_bottom_bar.dart';
 import 'package:tanisha_s_application14/widgets/custom_elevated_button.dart';
-import 'package:tanisha_s_application14/widgets/custom_text_form_field.dart';
 
 // ignore_for_file: must_be_immutable
 class NetfiixPaymentAmountScreen extends StatelessWidget {
@@ -223,7 +221,7 @@ class NetfiixPaymentAmountScreen extends StatelessWidget {
   onTapPaynow(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NetflixScreen(accNo)),
+      MaterialPageRoute(builder: (context) => NetflixScreen()),
     );
   }
 }

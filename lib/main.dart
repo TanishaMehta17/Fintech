@@ -1,26 +1,21 @@
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:tanisha_s_application14/theme/theme_helper.dart';
 import 'package:tanisha_s_application14/routes/app_routes.dart';
-import 'package:provider/provider.dart';
-import 'presentation/customer_id_provider.dart';
+import 'package:tanisha_s_application14/theme/theme_helper.dart';
+
+//import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // _initializeFirebase();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
 
   ///Please update theme as per your need if required.
   ThemeHelper().changeTheme('primary');
-
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => CustomerIdProvider(),
-      child: MyApp(),
-    ),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,8 +25,14 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'tanisha_s_application14',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.loginScreen,
+      initialRoute: AppRoutes.payBillScreen,
       routes: AppRoutes.routes,
     );
   }
 }
+
+// _initializeFirebase() async {
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+// }
