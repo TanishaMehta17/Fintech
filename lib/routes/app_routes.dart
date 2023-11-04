@@ -865,7 +865,7 @@ class AppRoutes {
     marrigeTransferConfirmationOneScreen: (context) =>
         MarrigeTransferConfirmationOneScreen(String, String, int),
     marrigeGiftCardePasswordScreen: (context) =>
-        MarrigeGiftCardePasswordScreen(),
+        MarrigeGiftCardePasswordScreen(String, String, int),
     marriageGiftConfirmationSuccessfulTransferScreen: (context) =>
         MarriageGiftConfirmationSuccessfulTransferScreen(String, String, int),
     marrigeGiftCardReciptScreen: (context) => MarrigeGiftCardReciptScreen(),
