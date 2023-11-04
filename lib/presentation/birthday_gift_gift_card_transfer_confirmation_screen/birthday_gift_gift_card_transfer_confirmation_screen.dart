@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tanisha_s_application14/core/app_export.dart';
+import 'package:tanisha_s_application14/presentation/birthday/birthday.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_image_1.dart';
 import 'package:tanisha_s_application14/widgets/app_bar/appbar_subtitle_2.dart';
@@ -228,7 +229,9 @@ class BirthdayGiftGiftCardTransferConfirmationScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the birthdayGiftGiftCardConfirmationSuccessfulTransferOneScreen.
   onTapSend(BuildContext context) {
-    Navigator.pushNamed(context,
-        AppRoutes.birthdayGiftGiftCardConfirmationSuccessfulTransferOneScreen);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BirthdayPasswordScreen()),
+    );
   }
 }
