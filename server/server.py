@@ -63,7 +63,7 @@ def login():
 
         token = jwt.encode({'id': user["cid"], 'pin':user["pin"], 'exp': datetime.datetime.now() + datetime.timedelta(hours=1)},
                             app.config['SECRET_KEY'], algorithm='HS256')
-
+        print("gddd")
         data["customer_id"]=user["cid"]
         data["timestamp"]=str(datetime.datetime.now())
         write_file(data)
