@@ -15,6 +15,18 @@
 - **Flask:** Backend framework for handling API requests and processing data.
 - **Python:** Programming language used in conjunction with Flask for backend development.
 
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/TanishaMehta17/Fintech/
+
+
+2. **Navigate to the project directory:**
+   ```bash
+   cd server
+   flask run
+
 ## Configuration
 
 ### Backend Setup
