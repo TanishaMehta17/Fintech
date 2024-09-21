@@ -60,7 +60,7 @@ We welcome contributions to the Banking App! To contribute:
 
 ## Contact
 
-For questions or support, please contact [tanishamehta1709@example.com](mailto:tanishamehta1709@example.com).
+For questions or support, please contact [tanishamehta1709@gamil.com](mailto:tanishamehta1709@gmail.com).
 
 Feel free to make any additional modifications based on your specific needs!
 
